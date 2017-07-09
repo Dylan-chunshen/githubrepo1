@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-configuration PUBLIC 
+	"-//Hibernate/Hibernate Configuration DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!--property name="hibernate.transaction.factory_class">net.sf.hibernate.transaction.JDBCTransactionFactory</property-->
+	  <!--property name="hibernate.transaction.manager_lookup_class"></property-->
+	  <!--property name="hibernate.connection.autocommit>true</property-->
+		
+		<!-- mapping files. -->
+		<mapping resource="platform/ResAccessInfo.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

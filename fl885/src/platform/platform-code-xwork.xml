@@ -1,0 +1,53 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="code" extends="webwork-default" namespace="/platform/admin/code">
+	  <interceptors>
+	    <interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+			<interceptor-stack name="codeStack">
+				<interceptor-ref name="params"/>
+        <interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="OpAction">
+					<param name="opIds">PLA_CODE</param>
+					<param name="errorPage">errorPage.jsp</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="codeStack"/>
+		
+		<action name="EXTTreeLoad" class="wegov.platform.action.code.EXTTreeLoadAction">
+			<result name="success" type="dispatcher">EXTTreeLoad.jsp</result>
+		</action>
+
+		<action name="code_list" class="wegov.platform.action.code.CodeListAction">
+			<result name="success" type="dispatcher">code_list.jsp</result>
+		</action>	
+		
+		<action name="code_add" class="wegov.platform.action.code.CodeGetAction">
+			<result name="success" type="dispatcher">code_add.jsp</result>			
+		</action>
+			
+		<action name="code_save" class="wegov.platform.action.code.CodeSaveAction">
+			<result name="success" type="dispatcher">code_successAction.jsp</result>
+		</action>
+		
+		<action name="code_modify" class="wegov.platform.action.code.CodeGetAction">
+			<result name="success" type="dispatcher">code_modify.jsp</result>			
+		</action>
+		
+		<action name="code_view" class="wegov.platform.action.code.CodeGetAction">
+			<result name="success" type="dispatcher">code_view.jsp</result>			
+		</action>
+		
+		<action name="code_del" class="wegov.platform.action.code.CodeDelAction">
+			<result name="success" type="chain">
+				<param name="actionName">code_list</param>
+				<param name="namespace">/platform/admin/code</param>				
+			</result>
+		</action>	
+									
+	</package>
+</xwork>

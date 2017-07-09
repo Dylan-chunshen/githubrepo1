@@ -1,0 +1,23 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="workday" extends="webwork-default" namespace="/platform/admin/workday">
+		<interceptors>
+			<interceptor-stack name="workdayStack">
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="workdayStack"/>
+
+		<action name="workdayList" class="wegov.platform.action.workday.WorkdayListAction">
+			<result name="success" type="dispatcher">workday_index.jsp</result>
+		</action>
+		<action name="workdaySet" class="wegov.platform.action.workday.WorkdayGetAction">
+			<result name="success" type="dispatcher">workday_set.jsp</result>
+		</action>
+		<action name="workdaySave" class="wegov.platform.action.workday.WorkdaySaveAction">
+			<result name="success" type="dispatcher">workday_winAction.jsp</result>
+		</action>
+	</package>
+</xwork>

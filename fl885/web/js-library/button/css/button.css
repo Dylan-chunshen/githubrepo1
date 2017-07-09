@@ -1,0 +1,216 @@
+/*
+###### 通用按钮样式 ######
+*/
+
+/** 按钮显示样式*/
+.z-btn {
+	display:inline;
+	font:normal 12px "宋体", tahoma, verdana, helvetica;
+	cursor:pointer;
+	white-space:nowrap;
+	width: auto;
+	vertical-align: middle;
+}
+.z-btn button {
+	border:0 none;
+	background:transparent;
+	cursor:pointer;
+	font:normal 12px "宋体", tahoma, verdana, helvetica;
+	padding-left:0px;
+	padding-right:0px;
+	margin:0;
+	overflow:visible;
+	width:auto;
+	-moz-outline:0 none;
+	outline:0 none;
+}
+.z-btn-left, .z-btn-right {
+	font-size:12px;
+	line-height:25px;
+	cursor:pointer;
+}
+.z-btn-left {
+	width:3px;
+	height:25px;
+	background:url(../img/btnout_bg_left.gif) no-repeat 0 0;
+	cursor:pointer;
+}
+.z-btn-right {
+	width:3px;
+	height:25px;
+	background:url(../img/btnout_bg_right.gif) no-repeat -7px 0px;
+	cursor:pointer;
+}
+.z-btn-left i, .z-btn-right i {
+	display:block;
+	width:3px;
+	overflow:hidden;
+	font-size:12px;
+	line-height:25px;
+	cursor:pointer;
+}
+.z-btn .z-btn-center {
+	background:url(../img/btnout_bg_center.gif) repeat-x 0px 0px;
+	vertical-align:middle;
+	text-align:center;
+	padding:0 6px 0 3px;
+	white-space:nowrap;
+}
+.z-btn em {
+	font-style:normal;
+	font-weight:normal;
+}
+.z-btn .z-btn-center .z-btn-text {
+	background-position:0 1px;
+	background-repeat:no-repeat;
+	padding-left:18px;
+	padding-top:2px;
+	padding-bottom:0px;
+	padding-right:0;
++width:0;
+	-width:0;
+}
+.z-btn-over .z-btn-left {
+	background:url(../img/btnover_bg_left.gif) no-repeat 0 0;
+}
+.z-btn-over .z-btn-right {
+	background:url(../img/btnover_bg_right.gif) no-repeat -7px 0;
+}
+.z-btn-over .z-btn-center {
+	background:url(../img/btnover_bg_center.gif) repeat-x 0px 0px;
+}
+.z-btn-dsb {
+	opacity:.40;
+	-moz-opacity:.40;
+	filter:alpha(opacity=40);
+}
+.z-btn-dsb .z-btn-left {
+	background:url(../img/btnDsb_bg_left.gif) no-repeat 0 0;
+	opacity:.35;
+	-moz-opacity:.35;
+	filter:alpha(opacity=35);
+}
+.z-btn-dsb .z-btn-right {
+	background:url(../img/btnDsb_bg_right.gif) no-repeat -7px 0;
+}
+.z-btn-dsb .z-btn-center {
+	background:url(../img/btnDsb_bg_center.gif) repeat-x 0px 0px;
+}
+/** 按钮小图标样式*/
+.icon-default {
+	background-image: url(../img/default.gif) !important;
+}
+.icon-add {
+	background-image: url(../img/add.gif) !important;
+}
+.icon-edit {
+	background-image: url(../img/edit.gif) !important;
+}
+.icon-modify {
+	background-image: url(../img/modify.gif) !important;
+}
+.icon-save {
+	background-image: url(../img/save.gif) !important;
+}
+.icon-submit {
+	background-image: url(../img/submit.gif) !important;
+}
+.icon-view {
+	background-image: url(../img/view.gif) !important;
+}
+.icon-close {
+	background-image: url(../img/close.gif) !important;
+}
+.icon-delete {
+	background-image: url(../img/delete.gif) !important;
+}
+.icon-cancel {
+	background-image: url(../img/cancel.gif) !important;
+}
+.icon-back {
+	background-image: url(../img/back.gif) !important;
+}
+.icon-search {
+	background-image: url(../img/search.gif) !important;
+}
+.icon-simpleSearch {
+	background-image: url(../img/simpleSearch.gif) !important;
+}
+.icon-advanceSearch {
+	background-image: url(../img/advanceSearch.gif) !important;
+}
+.icon-reset {
+	background-image: url(../img/reset.gif) !important;
+}
+.icon-refresh {
+	background-image: url(../img/refresh.gif) !important;
+}
+.icon-reload {
+	background-image: url(../img/reload.gif) !important;
+}
+.icon-stat {
+	background-image: url(../img/stat.gif) !important;
+}
+.icon-statimages {
+	background-image: url(../img/statimages.gif) !important;
+}
+.icon-statReport {
+	background-image: url(../img/statReport.gif) !important;
+}
+.icon-addRow {
+	background-image: url(../img/addRow.gif) !important;
+}
+.icon-deleteRow {
+	background-image: url(../img/deleteRow.gif) !important;
+}
+.icon-prePrint {
+	background-image: url(../img/prePrint.gif) !important;
+}
+.icon-print {
+	background-image: url(../img/print.gif) !important;
+}
+.icon-export {
+	background-image: url(../img/export.gif) !important;
+}
+.icon-exportWord {
+	background-image: url(../img/word.gif) !important;
+}
+.icon-exportExcel {
+	background-image: url(../img/excel.gif) !important;
+}
+.icon-exportPdf {
+	background-image: url(../img/pdf.gif) !important;
+}
+.icon-help {
+	background-image: url(../img/help.gif) !important;
+}
+.icon-error {
+	background-image: url(../img/error.gif) !important;
+}
+.icon-copy {
+	background-image: url(../img/copy.gif) !important;
+}
+.icon-check {
+	background-image: url(../img/check.gif) !important;
+}
+.icon-warn {
+	background-image: url(../img/warning.gif) !important;
+}
+.icon-fav {
+	background-image: url(../img/fav.gif) !important;
+}
+.icon-forum {
+	background-image: url(../img/forum.gif) !important;
+}
+.icon-config {
+	background-image: url(../img/config.gif) !important;
+}
+.icon-recycle {
+	background-image: url(../img/config.gif) !important;
+}
+.icon-home {
+	background-image: url(../img/home.gif) !important;
+}
+.icon-annex {
+	background-image: url(../img/annex.gif) !important;
+}

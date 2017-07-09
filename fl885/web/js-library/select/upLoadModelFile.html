@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+<title>增加比对对象</title>
+
+
+<link href="select.css" rel="stylesheet" type="text/css"/>
+<script src="jquery.js" type="text/javascript"> </script>
+<script src="select-ui.min.js" type="text/javascript" ></script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(e){
+    $(".select3").uedSelect({
+		width : 200
+	});
+	
+	
+    $("#choice").bind('click',function(){
+	    
+		$(this).closest('inpput[type=file]').trigger('click');
+	});	
+});
+
+function cancle(){
+	window.parent.closeDialog();
+}
+
+</script>
+
+
+</head>
+<body>
+
+<select id="stFileType" name="stFileType" class="select3">
+	<option value="001" selected="selected">刑警总队</option>
+	<option value="002">警令部</option>
+	<option value="003">交巡警总队</option>
+	<option value="004">消防总队</option>
+	<option value="005">法制总队</option>
+</select>
+
+
+
+    <!-- input type="file" name="file" class="button" value="浏览..."/ -->
+    
+	<!-- div class="uploader white" style="margin-top:3px;">
+		<input type="text" class="filename" readonly="readonly"/>
+		<input type="button" class="button" value="浏览..."/>
+		<input type="file" name="file" size="70"/>
+	</div><br/><br/><br/>
+	</form>
+	<input name="" type="button" class="scbtn" value="提交"  onclick="javascript:submitUpload();"/ -->
+</div>
+</body>
+</html>

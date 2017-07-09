@@ -1,0 +1,37 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="check" extends="webwork-default" namespace="/platform/admin/check">
+		<interceptors>
+	    <interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+			<interceptor-stack name="roleStack">
+				<interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="chainStack"/>
+				<interceptor-ref name="OpAction">
+				<param name="opIds">PLA_CHECK</param>
+				<param name="errorPage">errorPage.jsp</param>
+			</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="roleStack"/>
+
+	 <action name="userInfoList" class="wegov.platform.action.check.UserInfoListAction">
+			<result name="success" type="dispatcher">check_user_list.jsp</result>
+		</action>
+
+		<action name="role_list" class="wegov.platform.action.check.RoleListAction">
+			<result name="success" type="dispatcher">check_role_list.jsp</result>
+		</action>
+
+		<action name="checkUser" class="wegov.platform.action.check.CheckResultAction">
+			<result name="success" type="dispatcher">userInfoList.action</result>
+		</action>
+
+		<action name="checkRole" class="wegov.platform.action.check.CheckResultAction">
+			<result name="success" type="dispatcher">role_list.action</result>
+		</action>
+	</package>
+</xwork>

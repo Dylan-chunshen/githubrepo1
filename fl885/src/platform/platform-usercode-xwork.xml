@@ -1,0 +1,37 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="code1" extends="webwork-default" namespace="/common/usercode">
+	  <interceptors>
+	    <interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			<interceptor-stack name="codeStack1">
+        <interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="codeStack1"/>
+		
+		<action name="dic_list" class="wegov.platform.action.code.usercode.DicListAction">
+			<result name="success" type="dispatcher">code_manage_list.jsp</result>
+		</action>	
+		<action name="dic_add" class="wegov.platform.action.code.usercode.DicGetAction">
+			<result name="success" type="dispatcher">dic_add.jsp</result>
+		</action>	
+		
+			<action name="dic_save" class="wegov.platform.action.code.usercode.DicSaveAction">
+			<result name="success" type="dispatcher">dic_add.jsp</result>
+		</action>
+			<action name="dic_modify" class="wegov.platform.action.code.usercode.DicGetAction">
+			<result name="success" type="dispatcher">dic_add.jsp</result>
+		</action>
+		<action name="dic_del" class="wegov.platform.action.code.usercode.DicDelAction">
+		<result name="success" type="chain">
+				<param name="actionName">dic_list</param>
+				<param name="namespace">/common/usercode</param>				
+			</result>
+		</action>	
+									
+	</package>
+</xwork>

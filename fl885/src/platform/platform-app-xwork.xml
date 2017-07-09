@@ -1,0 +1,71 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="app" extends="webwork-default" namespace="/platform/admin/app">
+		<interceptors>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+			<interceptor-stack name="appStack">
+				<interceptor-ref name="chainStack"/>
+				<interceptor-ref name="OpAction">
+					<param name="opIds">PLA_CONFIG</param>
+					<param name="errorPage">errorPage.jsp</param>
+			</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="appStack"/>
+		
+		<action name="appList" class="wegov.platform.action.app.AppListAction">
+			<result name="success" type="dispatcher">app_list.jsp</result>			
+		</action>
+		
+		<action name="appGet" class="wegov.platform.action.app.AppGetOrSaveAction">
+			<result name="success" type="dispatcher">app_modify.jsp</result>			
+		</action>
+		
+		<action name="appSave" class="wegov.platform.action.app.AppGetOrSaveAction">
+			<result name="success" type="dispatcher">windowClose.jsp</result>			
+		</action>
+		
+		<action name="appDel" class="wegov.platform.action.app.AppDelAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>	
+		</action>
+	
+	
+		<action name="appOpList" class="wegov.platform.action.app.AppOpListAction">
+			<result name="success" type="dispatcher">app_op_list.jsp</result>			
+		</action>
+		
+		<action name="appOpSave" class="wegov.platform.action.app.AppOpSaveAction">
+			<result name="success" type="chain">
+				<param name="actionName">appOpList</param>
+				<param name="namespace">/platform/admin/app</param>				
+			</result>		
+		</action>
+		
+		<action name="appOpDel" class="wegov.platform.action.app.AppOpDelAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>			
+		</action>
+		
+		<action name="appConfigList" class="wegov.platform.action.app.AppConfigListAction">
+			<result name="success" type="dispatcher">app_config_list.jsp</result>			
+		</action>
+		
+		<action name="appConfigGet" class="wegov.platform.action.app.AppConfigListAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>			
+		</action>
+		
+		<action name="appConfigSave" class="wegov.platform.action.app.AppConfigOpAction">
+			<result name="success" type="chain">
+				<param name="actionName">appConfigList</param>
+				<param name="namespace">/platform/admin/app</param>
+			</result>		
+		</action>
+		
+		<action name="appConfigDel" class="wegov.platform.action.app.AppConfigOpAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>				
+		</action>
+		
+		
+		
+	</package>
+</xwork>

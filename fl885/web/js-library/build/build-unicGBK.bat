@@ -1,0 +1,1 @@
+java -jar yuicompressor-2.4.2.jar --charset GBK ../easyui-common/UNIC-GBK.js -o ../easyui-common/UNIC-GBK.min.js

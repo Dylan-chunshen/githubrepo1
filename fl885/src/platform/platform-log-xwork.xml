@@ -1,0 +1,23 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="log" extends="webwork-default" namespace="/platform/admin/log">
+	<interceptors>
+		<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+		<interceptor-stack name="logStack">
+			<interceptor-ref name="OpAction">
+				<param name="opIds">PLA_LOG</param>
+				<param name="errorPage">errorPage.jsp</param>
+			</interceptor-ref>
+			<interceptor-ref name="params"/>
+			<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="logStack"/>
+
+		<action name="logList" class="wegov.platform.action.log.LogListAction">
+			<result name="success" type="dispatcher">log_list.jsp</result>
+		</action>
+	</package>
+</xwork>

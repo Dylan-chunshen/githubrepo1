@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- Business Bean Setting Begin -->
+	<bean id="platform.OrgManage" class="wfc.facility.org.service.OrgManageBean" />
+	<bean id="platform.OrgQuery" class="wfc.facility.org.service.OrgQueryBean" />
+	<bean id="platform.RightManage" class="wfc.facility.right.service.RightManageBean" />
+	<bean id="platform.RightQuery" class="wfc.facility.right.service.RightQueryBean" />
+	<bean id="platform.LogMng" class="wegov.platform.LogMngBean" />
+	<bean id="platform.CodeMaster" class="wfc.facility.code.ejb.CodeMasterBean" lazy-init="true" />
+	<bean id="platform.AppConfig" class="wegov.platform.AppConfigBean"/>
+	<!-- lazy-init="true" -->
+	<bean id="platform.AppMng" class="wegov.platform.AppMngBean" />
+	<!-- Business Bean Setting End -->
+
+	<bean id="platform.jdbcResTypeHandler" class="wegov.platform.res.handler.JdbcResTypeHandler" singleton="false"/>
+	<bean id="platform.wadResTypeHandler" class="wegov.platform.res.handler.WadResTypeHandler" singleton="false"/>
+	<bean id="platform.hibernateResTypeHandler" class="wegov.platform.res.handler.HibernateResTypeHandler" singleton="false"/>
+	
+	
+	<bean id="platform.resService" class="wegov.platform.res.service.ResService">
+		<property name="configMaps">
+			<map>
+				<entry key="jdbc" value="platform.JdbcResTypeHandler"/>
+				<entry key="wad" value="platform.wadResTypeHandler"/>
+				<entry key="hibernate" value="platform.hibernateResTypeHandler"/>
+			</map>
+		</property>
+	</bean>
+	<!-- bean id="platform.resTypeService" parent="basicTxProxy">
+		<property name="target">
+			<bean class="wegov.platform.res.service.ResTypeService">
+				<property name="dao" ref="baseDao"/>
+				<property name="boType" value="wegov.platform.res.bo.ResTypeBo"/>	
+			</bean>
+		</property>
+	</bean -->
+	<bean id="platform.resTypeUrlMap" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="jdbc" value="/platform/res/cccc.jap"/>
+				<entry key="wad" value="/platform/res/cccc.jap"/>
+				<entry key="hibernate" value="/platform/res/cccc.jap"/>
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+	<!-- bean id="platform.basicDao" class="wfc.facility.hibernate.BasicDao">
+		<constructor-arg>
+			<ref bean="sessionFactory" />
+		</constructor-arg>
+	</bean -->
+	<!-- 资源配置 
+	<bean id="platform.ResAccessHelper" class="wegov.platform.ResAccessHelper">
+		<constructor-arg ref="sessionFactory" index="0"></constructor-arg>
+		<constructor-arg value="wfc.facility.right.common.ResAccessInfo" index="1"></constructor-arg>
+	</bean> -->
+	<!-- UserInfo/TeamInfo的实现类配置（主要是扩展字段不同） -->
+	<bean id="wegovExtConfigBean" class="wegov.platform.ext.WegovExtConfigBean">
+		<!--
+		公司信息化
+		<property name="extUserInfoBeanName" value="wegov.platform.ext.wonders.UserInfo"></property>
+		-->
+		<!-- 标准用户/单位实现类 -->
+		<property name="extUserInfoBeanName" value="com.wonders.security.model.wegov.UserInfo"></property>
+		<property name="extTeamInfoBeanName" value="com.wonders.security.model.wegov.TeamInfo"></property>
+		<property name="userPre" value=""></property>
+		<property name="teamPre" value=""></property>
+		<property name="defaultUserTeamId" value="G10"></property>
+	</bean>
+
+	<!-- 
+	公司信息化找回密码配置，和统一消息对接之后，只用plugins的配置，此段配置将废弃。业务系统不需要此段配置。
+	<bean id="passwordResetMap" class="wegov.component.pub.common.PasswordResetMap"
+		singleton="true">
+		<property name="host" value="10.1.2.200"/>
+		<property name="port" value="25"/>
+		<property name="from" value="wdmessage@wondersgroup.com"/>
+		<property name="userName" value="wdmessage"/>
+		<property name="password" value="Wonders2009"></property>
+	</bean>
+
+	<bean id="passwordResetCheckService" class="wegov.component.pub.service.PasswordResetCheckService"></bean>
+	<bean id="scheduledTimerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="delay">
+			<value>10000</value>
+		</property>
+		<property name="period">
+			<value>10000</value>
+		</property>
+		<property name="timerTask">
+			<ref local="passwordResetCheckService" />
+		</property>
+	</bean>
+	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="scheduledTimerTask" />
+			</list>
+		</property>
+	</bean>
+	 -->
+</beans>

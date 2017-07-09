@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="wfc.facility.right.common">
+<class name="ResAccessInfo"	table="wegov_right_res_access">
+	<id	name="id" column="ST_ID">
+		<generator class="wfc.facility.hibernate.OracleIDGenerator">
+			<param name="sequence">SEQ_PLA_RIGHT_INFO</param>
+			<param name="prefix"></param>
+    </generator>		
+	</id>
+	<property	name="resId"	column="ST_RES_ID"/>
+	<property	name="resApp"	column="ST_RES_APP"/>
+	<property	name="accessType"	column="ST_ACCESS_TYPE"/>
+	<property	name="accessGroup"	column="ST_ACCESS_GROUP"/>
+	<property	name="accessGroupName"	column="ST_ACCESS_GROUP_NAME"/>
+	<property	name="minLevel"	column="NM_MIN_LEVEL"/>
+	<property	name="maxLevel"	column="NM_MAX_LEVEL"/>
+	<property	name="operation"	column="ST_OPERATION"/>
+	<property	name="operationName"	column="ST_OPERATION_NAME"/>
+	<property	name="description"	column="ST_DESCRIPTION"/>
+	<property	name="author"	column="ST_AUTHOR"/>
+	<property	name="days"	column="NM_DAYS"/>
+	<property	name="deadline"	column="DT_DEADLINE"/>
+	<property	name="insertTime"	column="DT_INSERT_TIME"/>
+</class>
+</hibernate-mapping>

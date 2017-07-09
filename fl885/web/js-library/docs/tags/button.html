@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>按钮控制样式 </title>
+		<link rel="STYLESHEET" type="text/css" href="../../button/css/button.css">
+		<script language="javascript" src="../../easyui-1.2.1/jquery-1.4.2.min.js"></script>
+		<script language="javascript" src="../../button/js/button.js"></script>
+		<script type="text/vbscript" src="../../easyui-1.2.1/ajax.vbs"></script>
+	</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	<body style="text-align:left">
+		<h3>1、UI控件使用说明 －－ 按扭</h3>
+		<ul>
+			<li>示例</br>
+			<input type='button' value='按扭默认样式' onclick='alert("按扭默认样式")'>&lt;input type='button' value='按扭' onclick='alert("按扭默认样式")'&gt; <br>
+			<input id='dsb' type='button' value='disabled按扭样式' onclick='alert(1)' disabled=true>&lt;input id='dsb' type='button' value='disabled按扭' onclick='alert(1)' disabled&gt; <br>
+			<input type='button' value='可用' onclick='javascript:$("#dsb").btn().enable()'>&lt;input type='button' value='可用' onclick='javascript:$("#dsb").bnt().enable()'&gt;<br>
+			<input type='button' value='不可用' onclick='javascript:$("#dsb").btn().disable()'>&lt;input type='button' value='不可用' onclick='javascript:$("#dsb").btn().disable()'&gt;<br><br>
+			<br/><strong>
+				
+		<font color="red">常用按钮统一使用</font></strong><br/>
+			<br/>
+			<input icon='icon-add' type='button' value='添加' >&lt;input icon='icon-add' type='button' value='添加' &gt;<br>
+			<input icon='icon-edit' type='button' value='编辑' >&lt;input icon='icon-edit' type='button' value='编辑' &gt;<br>
+			<input icon='icon-modify' type='button' value='修改' >&lt;input icon='icon-modify' type='button' value='修改' &gt;<br>
+			<input icon='icon-save' type='button' value='保存' >&lt;input icon='icon-save' type='button' value='保存' &gt;<br>
+			<input icon='icon-submit' type='button' value='提交' >&lt;input icon='icon-submit' type='button' value='提交' &gt;<br>
+			<input icon='icon-view' type='button' value='查看' >&lt;input icon='icon-view' type='button' value='查看' &gt;<br>
+			<input icon='icon-close' type='button' value='关闭' >&lt;input icon='icon-close' type='button' value='关闭' &gt;<br>
+			<input icon='icon-delete' type='button' value='删除' >&lt;input icon='icon-delete' type='button' value='删除'  &gt;<br>
+			<input icon='icon-cancel' type='button' value='取消' >&lt;input icon='icon-cancel' type='button' value='取消'  &gt;<br>
+			<input icon='icon-back' type='button' value='返回' >&lt;input icon='icon-back' type='button' value='返回'  &gt;<br>
+			<input icon='icon-search' type='button' value='查询' >&lt;input icon='icon-search' type='button' value='查询' &gt;<br>
+			<input icon='icon-simpleSearch' type='button' value='简单查询' >&lt;input icon='icon-simpleSearch' type='button' value='简单查询' &gt;<br>
+			<input icon='icon-advanceSearch' type='button' value='高级查询' >&lt;input icon='icon-advanceSearch' type='button' value='高级查询' &gt;<br>
+			
+			<input icon='icon-reset' type='button' value='重置' >&lt;input icon='icon-reset' type='button' value='重置' &gt;<br>
+			<input icon='icon-refresh' type='button' value='刷新' >&lt;input icon='icon-refresh' type='button' value='重置' &gt;<br>
+			<input icon='icon-reload' type='button' value='加载' >&lt;input icon='icon-reload' type='button' value='按钮样式'  &gt;<br>
+			<input icon='icon-stat' type='button' value='统计' >&lt;input icon='icon-stat' type='button' value='统计' &gt;<br>
+			<input icon='icon-statImg' type='button' value='统计图' >&lt;input icon='icon-statImg' type='button' value='统计图' &gt;<br>
+			<input icon='icon-statReport' type='button' value='统计报表' >&lt;input icon='icon-statReport' type='button' value='统计报表' &gt;<br>
+			<input icon='icon-addRow' type='button' value='添加一行' >&lt;input icon='icon-add-row' type='button' value='添加一行'  &gt;<br>
+			<input icon='icon-deleteRow' type='button' value='删除一行' >&lt;input icon='icon-delete-row' type='button' value='删除一行'  &gt;<br>
+			
+			<input icon='icon-prePrint' type='button' value='打印预览' >&lt;input icon='icon-prePrint' type='button' value='打印预览' &gt;<br>
+			<input icon='icon-print' type='button' value='打印' >&lt;input icon='icon-print' type='button' value='打印'  &gt;<br>
+			<input icon='icon-export' type='button' value='导出' >&lt;input icon='icon-export' type='button' value='按钮样式'  &gt;<br>			
+			<input icon='icon-exportWord' type='button' value='导出到word' >&lt;input icon='icon-exportWord' type='button' value='导出到word'  &gt;<br>
+			<input icon='icon-exportExcel' type='button' value='导出到Excel' >&lt;input icon='icon-exportExcel' type='button' value='导出到Excel'  &gt;<br>
+			<input icon='icon-exportPdf' type='button' value='导出到Pdf' >&lt;input icon='icon-exportPdf' type='button' value='导出到Pdf'  &gt;<br>
+			<input icon='icon-help' type='button' value='帮助' >&lt;input icon='icon-help' type='button' value='帮助'  &gt;<br>
+			<input icon='icon-error' type='button' value='错误信息' >&lt;input icon='icon-error' type='button' value='错误信息'  &gt;<br>
+			<input icon='icon-copy' type='button' value='复制' >&lt;input icon='icon-copy' type='button' value='复制'  &gt;<br>
+			<input icon='icon-check' type='button' value='检查' >&lt;input icon='icon-check' type='button' value='检查'  &gt;<br>
+			<input icon='icon-warn' type='button' value='警告' >&lt;input icon='icon-warn' type='button' value='警告'  &gt;<br>
+			<input icon='icon-fav' type='button' value='收藏' >&lt;input icon='icon-fav' type='button' value='收藏'  &gt;<br>
+			<input icon='icon-forum' type='button' value='论坛' >&lt;input icon='icon-forum' type='button' value='论坛'  &gt;<br>
+			<input icon='icon-config' type='button' value='配置' >&lt;input icon='icon-config' type='button' value='配置'  &gt;<br>
+			<input icon='icon-recycle' type='button' value='回收站' >&lt;input icon='icon-recycle' type='button' value='回收站'  &gt;<br>
+			<input icon='icon-home' type='button' value='主页' >&lt;input icon='icon-home' type='button' value='主页'  &gt;<br>
+			<input icon='icon-annex' type='button' value='附件' >&lt;input icon='icon-annex' type='button' value='附件'  &gt;<br>
+			
+			</li>
+		</ul>
+	</body>
+</html>

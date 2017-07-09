@@ -1,0 +1,95 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="role" extends="webwork-default" namespace="/platform/admin/role">
+	<interceptors>
+	    <interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+		
+			<interceptor-stack name="roleStack">
+        <interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="chainStack"/>
+				<interceptor-ref name="OpAction">
+					<param name="opIds">PLA_ROLE</param>
+					<param name="errorPage">errorPage.jsp</param>
+				</interceptor-ref>
+			</interceptor-stack>
+	</interceptors>
+
+		<default-interceptor-ref name="roleStack"/>
+		
+		<action name="role_list" class="wegov.platform.action.role.RoleListAction">
+			<result name="success" type="dispatcher">role_list.jsp</result>
+		</action>
+
+		<action name="role_add" class="wegov.platform.action.role.RoleGetAction">
+			<result name="success" type="dispatcher">role_add.jsp</result>
+		</action>
+
+		<action name="role_save" class="wegov.platform.action.role.RoleSaveAction">
+			<result name="success" type="dispatcher">role_successAction.jsp</result>
+		</action>
+
+		<action name="role_edit" class="wegov.platform.action.role.RoleGetAction">
+			<result name="success" type="dispatcher">role_edit.jsp</result>
+		</action>
+
+		<action name="role_funcListIndex" class="wegov.platform.action.role.RoleNameGetAction">
+			<result name="success" type="dispatcher">role_funcListIndex.jsp</result>
+		</action>
+		
+		<action name="role_funcDiffIndex" class="wegov.platform.action.role.RoleNameGetAction">
+			<result name="success" type="dispatcher">role_funcDiffIndex.jsp</result>
+		</action>
+
+		<action name="role_funcList" class="wegov.platform.action.role.RoleFuncListAction">
+			<result name="success" type="dispatcher">role_funcList.jsp</result>
+		</action>
+		
+		<action name="role_funcDiff" class="wegov.platform.action.role.RoleFuncDiffAction">
+			<result name="success" type="dispatcher">role_funcDiff.jsp</result>
+		</action>
+
+		<action name="role_funcDefine" class="wegov.platform.action.role.RoleGetFuncAction">
+			<result name="success" type="dispatcher">role_funcDefine.jsp</result>
+		</action>
+
+		<action name="role_saveFuncDefine" class="wegov.platform.action.role.RoleSaveFuncAction">
+			<result name="success" type="dispatcher">role_successAction.jsp</result>
+		</action>
+
+		<action name="role_unitDefine" class="wegov.platform.action.role.RoleGetUnitAction">
+			<result name="success" type="dispatcher">role_unitDefine.jsp</result>
+		</action>
+
+		<action name="role_unitSave" class="wegov.platform.action.role.RoleSaveUnitAction">
+			<result name="success" type="dispatcher">role_succActionNoReloadParWin.jsp</result>
+		</action>
+
+		<action name="roleUser_edit" class="wegov.platform.action.role.RoleGetUserAction">
+			<result name="success" type="dispatcher">roleUser_edit.jsp</result>
+		</action>
+
+		<action name="role_userByTeam" class="wegov.platform.action.role.RoleGetUserByTeamAction">
+			<result name="success" type="dispatcher">role_userByTeam.jsp</result>
+		</action>
+
+		<action name="roleUser_save" class="wegov.platform.action.role.RoleSaveUserAction">
+			<result name="success" type="dispatcher">role_succActionNoReloadParWin.jsp</result>
+		</action>
+
+		<action name="group_list" class="wegov.platform.action.role.RoleGroupListAction">
+			<result name="success" type="dispatcher">group_list.jsp</result>
+		</action>
+
+		<action name="group_get" class="wegov.platform.action.role.RoleGroupGetAction">
+			<result name="success" type="dispatcher">group_edit.jsp</result>
+		</action>
+
+		<action name="group_save" class="wegov.platform.action.role.RoleGroupSaveAction">
+			<result name="success" type="dispatcher">role_successAction.jsp</result>
+		</action>
+
+	</package>
+</xwork>

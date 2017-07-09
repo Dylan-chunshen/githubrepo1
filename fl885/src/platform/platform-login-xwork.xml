@@ -1,0 +1,41 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="login" extends="webwork-default" namespace="">
+		<interceptors>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack"/>
+
+		<action name="login" class="wegov.platform.action.user.LoginAction">
+			<result name="success" type="dispatcher">/webApplication/loginAction.jsp</result>			
+			<result name="error" type="dispatcher">/login.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="logout" class="wegov.platform.action.user.LogoutAction">
+			<result name="success" type="dispatcher">/login.jsp</result>
+		</action>
+		
+		
+		<action name="passwordUpdate" class="wegov.platform.action.user.UserPasswordAction">
+			<result name="success" type="dispatcher">/platform/admin/user/user_password.jsp</result>
+		</action>
+
+		<action name="userPasswordUpdate" class="wegov.platform.action.user.UserInfoViewAction">
+			<result name="success" type="dispatcher">/platform/admin/user/user_password.jsp</result>
+		</action>
+
+		<!-- 登录功能 hyj 20151229 -->
+		<action name="loginAction" class="com.wonders.controllers.system.LoginController">
+			<result name="success" type="dispatcher">/jsp/system/login/loginAction.jsp</result>
+			<!-- <result name="success" type="dispatcher">/system/main/jzMain.jsp</result> -->
+			<result name="error" type="dispatcher">/jsp/system/login/loginError.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+</xwork>

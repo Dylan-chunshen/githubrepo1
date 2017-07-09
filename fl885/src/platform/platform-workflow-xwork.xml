@@ -1,0 +1,116 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<package name="workflow" extends="webwork-default" namespace="/platform/admin/workflow">
+	  <interceptors>
+			<interceptor name="fileUpload" class="com.opensymphony.webwork.interceptor.FileUploadInterceptor">
+				<param name="maximumSize">10000000</param>
+			</interceptor>
+			<!--<interceptor name="AffairUserInterceptor" class="wegov.affair.action.AffairUserInterceptor"/>-->
+			<interceptor-stack name="weStack">
+				<interceptor-ref name="fileUpload"/>
+				<!--<interceptor-ref name="AffairUserInterceptor"/>-->
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="weStack"/>
+		<action name="templateList" class="wegov.component.we.template.action.TemplateListAction">
+			<result name="success" type="dispatcher">templateList.jsp</result>
+		</action>
+		<action name="templateVersionAdd" class="wegov.component.we.template.action.TemplateVersionAddAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>
+		</action>
+		<action name="templateLink" class="wegov.component.we.template.action.TemplateLinkAction">
+			<result name="success" type="dispatcher">template_add.jsp</result>
+		</action>
+		<action name="templateAdd" class="wegov.component.we.template.action.TemplateAddAction">
+			<result name="success" type="dispatcher">template_added_result.jsp</result>
+		</action>
+		<action name="templatePara" class="wegov.component.we.template.action.TemplateParaAction">
+			<result name="success" type="dispatcher">template_edit.jsp</result>
+		</action>
+		<action name="templateEdit" class="wegov.component.we.template.action.TemplateEditAction">
+			<result name="success" type="dispatcher">template_edited_result.jsp</result>
+		</action>          
+		<action name="templateDelete" class="wegov.component.we.template.action.TemplateDeleteAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>
+		</action>
+		<action name="templateEnable" class="wegov.component.we.template.action.TemplateEnableAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>
+		</action>
+		<action name="templateUnable" class="wegov.component.we.template.action.TemplateUnableAction">
+			<result name="success" type="dispatcher">windowSubmit.jsp</result>
+		</action>
+		<action name="TpNodeList" class="wegov.component.we.template.action.TpNodeListAction">
+			<result name="success" type="dispatcher">tpnode_list.jsp</result>
+		</action>
+		<action name="TpNodeLink" class="wegov.component.we.template.action.TpNodeLinkAction">
+			<result name="success" type="dispatcher">tpnode_add.jsp</result>
+		</action>
+		<action name="TpNodeAdd" class="wegov.component.we.template.action.TpNodeAddAction">
+			<result name="success" type="dispatcher">tpnode_added_result.jsp</result>
+		</action>
+		<action name="TpNodeDelete" class="wegov.component.we.template.action.TpNodeDeleteAction">
+			<result name="success" type="dispatcher">windowSubmit2.jsp</result>
+		</action>
+		<action name="TpNodePara" class="wegov.component.we.template.action.TpNodeParaAction">
+			<result name="success" type="dispatcher">tpnode_edit.jsp</result>
+		</action>
+		<action name="TpNodeEdit" class="wegov.component.we.template.action.TpNodeEditAction">
+			<result name="success" type="dispatcher">tpnode_edited_result.jsp</result>
+		</action>
+		<action name="TpActionLink" class="wegov.component.we.template.action.TpActionLinkAction">
+			<result name="success" type="dispatcher">tpaction_add.jsp</result>
+		</action>
+		<action name="TpActionAdd" class="wegov.component.we.template.action.TpActionAddAction">
+			<result name="success" type="dispatcher">tpaction_added_result.jsp</result>
+		</action>
+		<action name="TpActionPara" class="wegov.component.we.template.action.TpActionParaAction">
+			<result name="success" type="dispatcher">tpaction_edit.jsp</result>
+		</action>
+		<action name="TpActionEdit" class="wegov.component.we.template.action.TpActionEditAction">
+			<result name="success" type="dispatcher">tpaction_edited_result.jsp</result>
+		</action>
+		<action name="TpActionDelete" class="wegov.component.we.template.action.TpActionDeleteAction">
+			<result name="success" type="dispatcher">tpaction_deleted_result.jsp</result>
+		</action>
+		<action name="right_list" class="wegov.component.we.template.action.RightListAction">
+			<result name="success" type="dispatcher">right_list.jsp</result>
+		</action>
+		<action name="access_index" class="wegov.component.we.template.action.RightIndexAction">
+			<result name="success" type="dispatcher">access_index.jsp</result>
+		</action>	
+		<action name="access_main" class="wegov.component.we.template.action.RightReListAction">
+			<result name="success" type="dispatcher">access_main.jsp</result>
+		</action>
+		<action name="user_resource" class="wegov.component.we.template.action.ResListAction">
+			<result name="success" type="dispatcher">user_resource.jsp</result>
+		</action>
+		<action name="unit_level" class="wegov.component.we.template.action.ResListAction">
+			<result name="success" type="dispatcher">unit_level.jsp</result>
+		</action>
+		<action name="resource_add" class="wegov.component.we.template.action.RightAddAction">
+			<result name="success" type="chain">
+				<param name="actionName">user_resource</param>
+				<param name="namespace">/platform/admin/workflow</param>				
+			</result>
+			<result name="success_all" type="chain">
+				<param name="actionName">unit_level</param>
+				<param name="namespace">/platform/admin/workflow</param>				
+			</result>			
+		</action>
+		<action name="resource_del" class="wegov.component.we.template.action.RightDeleteAction">
+			<result name="success_inUnit" type="chain">
+				<param name="actionName">user_resource</param>
+				<param name="namespace">/platform/admin/workflow</param>				
+			</result>
+			<result name="success_inLevel" type="chain">
+				<param name="actionName">unit_level</param>
+				<param name="namespace">/platform/admin/workflow</param>				
+			</result>	
+			<result name="success_inMain" type="chain">
+				<param name="actionName">access_main</param>
+				<param name="namespace">/platform/admin/workflow</param>				
+			</result>			
+		</action>
+	</package>
+</xwork>

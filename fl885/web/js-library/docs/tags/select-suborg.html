@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>界面控件库</title>
+	<link rel="stylesheet" type="text/css" href="../../easyui-1.2.1/themes/default/easyui.css">
+	<script type="text/javascript" src="../../easyui-1.2.1/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../easyui-1.2.1/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+
+<body class="html-body">
+	<div id="page-title">select-suborg</div>
+
+	<h1 id="toc1"><span>简介</span></h1>
+	<p>select-suborg主要用于以下拉框的形式展示组织机构。包括普通下拉框和树形下拉框两种。</p>
+	<p></p>
+	<h1 id="toc1"><span>依赖关系</span></h1>
+		<p>1、gov-util</p>
+		<p>目前只支持wegov平台（默认）。需要在\js-library\easyui-1.2.1\gov\config.js中配置oup_service实现类。也可以根据其他平台编写adapter类，但是该类必须实现gov.adapter.oup.OupService接口</p>
+		<p>各类平台的实现类如下：</p>
+		<table class="wiki-content-table">
+          <tr>
+            <th>平台</th>
+            <th>接口实现类</th>
+          </tr>
+          <tr>
+            <td>WEGOV</td>
+            <td>gov.adapter.oup.wegov.WegovService</td>
+          </tr>
+</table>
+		<p>2、esayui</p>
+		<p>当控件为普通下拉框时，本标签调用的是easyui中的combobox控件；当控件为下拉树时，本标签调用的是easyui中的combotree控件。</p>
+		<h1 id="toc1"><span>使用方法</span></h1>
+	<p>1、普通下拉框(不设tree属性或tree=&quot;false&quot;)</p>
+	<p>代码：</p>
+	<div class="code">
+	  <br>
+	  &lt;select id=&quot;s2&quot; name=&quot;s2&quot; class=&quot;select-suborg&quot; required=&quot;true&quot; orgId=&quot;67072&quot; &gt;&lt;/select&gt; <br>
+	</div>
+		<p>2、树形下拉框(tree=&quot;true&quot;)</p>
+		<p>代码：</p>
+		<div class="code">
+		  <br>
+		  &lt;select id=&quot;s2&quot; name=&quot;s2&quot; class=&quot;select-suborg&quot; tree=&quot;true&quot;  required=&quot;true&quot; orgId=&quot;67072&quot; &gt;&lt;/select&gt;		  <br>
+		</div>
+<h1 id="toc1"><span>属性</span></h1>
+普通下拉框请参考easyui中的combobox；树形下拉框请参考easyui中的combotree。以下只列出扩展后的属性：
+	<table class="wiki-content-table">
+      <tr>
+        <th>属性</th>
+<th>参考值</th>       <th>说明</th>
+      </tr>
+      <tr>
+        <td>orgId</td>
+        <td>&nbsp;</td>
+        <td>必填属性。组织机构的根节点id，即使用本标签会将orgId对应的组织机构显示出现。</td>
+      </tr>
+      <tr>
+        <td>tree</td>
+        <td>true或false</td>
+        <td>非必填属性。当tree为true时，使用树形控件，懒加载。</td>
+      </tr>
+      <tr>
+        <td>freeInput</td>
+        <td>true或false</td>
+        <td>非必填属性。当freeInput为true时，允许用户可以不从选项中选取而是随意输入值提交。（目前只支持普通下拉框）</td>
+      </tr>
+      <tr>
+        <td>defaultValue</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。下拉框默认值，填组织机构id</td>
+      </tr>
+      <tr>
+        <td>defaultText</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。下拉框中的默认机构名称，和defaultValue对应。如果只填defaultValue，标签会自动从后台查询对应的Text。如果两个属性都设置，那么标签就不再从后台读defaultValue对应的text值。</td>
+      </tr>
+      <tr>
+        <td>readOnly</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。</td>
+      </tr>
+      <tr>
+        <td>textName</td>
+        <td>&nbsp;</td>
+        <td> 非必填属性。如果设置了textName，那么该下拉框的name会自动提交以此属性值为名称传入request中 </td>
+      </tr>
+    </table>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+</body>
+</html>

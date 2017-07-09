@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>界面控件库</title>
+	<link rel="stylesheet" type="text/css" href="../../easyui-1.2.1/themes/default/easyui.css">
+	<script type="text/javascript" src="../../easyui-1.2.1/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../easyui-1.2.1/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+
+<body class="html-body">
+	<div id="page-title">select-wad-code</div>
+
+	<h1 id="toc1"><span>简介</span></h1>
+	<p>select-wad-code主要用于支持wad字典，提供普通下拉框和树形下拉框两种方式的控件。</p>
+	<p></p>
+	<h1 id="toc1"><span>依赖关系</span></h1>
+		<p>1、wad</p>
+		<p>wad提供字典管理，支持wegov、ssm及CuteFramework等各种平台的字典接入。只需要在wad_config.properties中配置wad.dic.wadDicInstance属性。</p>
+		<p>各类平台的wad字典接口实现类如下：</p>
+		<table class="wiki-content-table">
+          <tr>
+            <th>平台</th>
+            <th>接口实现类</th>
+          </tr>
+          <tr>
+            <td>SSM</td>
+            <td>wad2.ssm.DicHelper</td>
+          </tr>
+          <tr>
+            <td>WEGOV</td>
+            <td>wegov.component.pub.service.CodeHelper</td>
+          </tr>
+</table>
+		<p>2、esayui</p>
+		<p>当控件为普通下拉框时，本标签调用的是easyui中的combobox控件；当控件为下拉树时，本标签调用的是easyui中的combotree控件。</p>
+		<h1 id="toc1"><span>使用方法</span></h1>
+	<p>1、普通下拉框(不设tree属性或tree=&quot;false&quot;)</p>
+	<p>代码：</p>
+	<div class="code">
+	<br>
+			&lt;select id="s1" name="s1" class="select-wad-code" name="select" required="true" tcode="SRC_PLATFORM" &gt;&lt;/select&gt; <br>
+	</div>
+		<p>2、树形下拉框(tree=&quot;true&quot;)</p>
+		<p>代码：</p>
+		<div class="code">
+	<br>
+			&lt;select id="s1" name="s1" class="select-wad-code" name="select" required="true" tree=&quot;true&quot;  tcode="SRC_PLATFORM" &gt;&lt;/select&gt;
+	<br>
+	</div>
+<h1 id="toc1"><span>属性</span></h1>
+普通下拉框请参考easyui中的combobox；树形下拉框请参考easyui中的combotree。以下只列出扩展后的属性：
+	<table class="wiki-content-table">
+      <tr>
+        <th>属性</th>
+<th>参考值</th>       <th>说明</th>
+      </tr>
+      <tr>
+        <td>tcode</td>
+        <td>&nbsp;</td>
+        <td>必填属性。字典根code，即使用本标签会将tcode对应的所有字典显示出现。</td>
+      </tr>
+      <tr>
+        <td>tree</td>
+        <td>true或false</td>
+        <td>非必填值。当tree为true时，使用树形字典，懒加载。</td>
+      </tr>
+      <tr>
+        <td>freeInput</td>
+        <td>true或false</td>
+        <td>非必填属性。当freeInput为true时，允许用户可以不从选项中选取而是随意输入值提交。（目前只支持普通下拉框）</td>
+      </tr>
+      <tr>
+        <td>defaultValue</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。下拉框默认值，填字典的code</td>
+      </tr>
+      <tr>
+        <td>defaultText</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。下拉框中的默认字典的中文名称，和defaultValue对应。如果只填defaultValue，标签会自动从后台查询对应的Text。如果两个属性都设置，那么标签就不再从后台读defaultValue对应的text值。</td>
+      </tr>
+      <tr>
+        <td>readOnly</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。</td>
+      </tr>
+      <tr>
+        <td>textName</td>
+        <td>&nbsp;</td>
+        <td>非必填属性。如果设置了textName，那么该下拉框的name会自动提交以此属性值为名称传入request中</td>
+      </tr>
+    </table>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+</body>
+</html>

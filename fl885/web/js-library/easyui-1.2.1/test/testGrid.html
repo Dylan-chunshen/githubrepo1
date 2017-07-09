@@ -1,0 +1,64 @@
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>上海市社区矫正工作管理系统</title>
+	
+
+<link rel="stylesheet" type="text/css" href="/js-library/easyui-1.2.1/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/js-library/easyui-1.2.1/themes/icon.css">
+<script type="text/javascript" src="/js-library/easyui-1.2.1/gov/config.js"></script>
+<script type="text/vbscript" src="/js-library/easyui-1.2.1/ajax.vbs"></script>
+<script type="text/javascript" src="/js-library/easyui-1.2.1/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/js-library/easyui-1.2.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/js-library/easyui-1.2.1/gov/plugin/commonCombo.js"></script>
+<script type="text/javascript" src="/js-library/easyui-1.2.1/gov/plugin/commonGrid.js"></script>
+
+<script type="text/javascript" src="/js-library/easyui-1.2.1/gov/easyui-gov.js"></script>
+<script type="text/javascript" src="/js-library/easyui-1.2.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="/js-library/datePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="/js-library/easyui-1.2.1/gov/ValidateFunction.min.js"></script>
+
+
+
+<link href="/sqjz/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/sqjz/css/displaytag.css" rel="stylesheet" type="text/css" />
+<link href="/sqjz/css/button.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/sqjz/Scripts/config-sqjz.js"></script>
+<script type="text/javascript" src="/sqjz/Scripts/easyui-sqjz.js"></script>
+<script type="text/javascript" src="/sqjz/Scripts/common.js"></script>
+<script type="text/javascript" src="/sqjz/Scripts/sqjz.js"></script>
+
+</head>
+<body class="" scroll="no">
+
+<table id="test"></table>
+
+<script>
+
+$('#test').commonGrid({
+    title:'Load Data',
+	height:350,
+	iconCls:'icon-reload',
+	striped: true,
+    pagination:true,
+	url:'action.jsp',
+	singleSelect: true,
+	queryParams:{"test":"testValue"},
+	idField:'name',
+	columns:[[
+					{field:'name',title:'Name',width:120},
+					{field:'innerBo.innerName',title:'Hidden',width:120},
+					{field:'op',title:'操作',width:120,type:'local',formatter:function(){return '删除'}}
+	]],
+	hiddenColumns:["hidden"]
+});
+</script>
+</body>
+</html>
+
+

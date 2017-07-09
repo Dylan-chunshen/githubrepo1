@@ -1,0 +1,7 @@
+
+.brand a {
+display: block;
+height: 38px;
+text-indent: -10000px;
+background: url("image/logo1.png") left center no-repeat;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="relation" extends="webwork-default" namespace="/platform/admin/relation">
+		<interceptors>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+			<interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			
+			<interceptor-stack name="relationStack">
+				<interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="OpAction">
+					<param name="opIds">PLA_ORG</param>
+					<param name="errorPage">errorPage.jsp</param>
+				</interceptor-ref>
+				<interceptor-ref name="params" />
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="relationStack"/>
+        
+        <action name="unitRelationListInit" class="wegov.platform.action.relation.UnitRelationListInitAction">
+			<result name="success" type="dispatcher">unit_relation_list.jsp</result>
+		</action>
+        
+		<action name="unitRelationList" class="wegov.platform.action.relation.UnitRelationListAction">
+			<result name="success" type="dispatcher">unit_relation_list_result.jsp</result>
+		</action>
+		
+		<action name="unitRelationEditInit" class="wegov.platform.action.relation.UnitRelationEditInitAction">
+			<result name="success" type="dispatcher">unit_relation_edit.jsp</result>
+		</action>
+		
+		<action name="unitRelationEdit" class="wegov.platform.action.relation.UnitRelationEditAction">
+			<result name="success" type="dispatcher">unit_relation_succParWin.jsp</result>
+		</action>
+		
+	</package>
+</xwork>

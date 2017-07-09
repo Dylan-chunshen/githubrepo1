@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/dbconfig.properties=GBK
+encoding//src/ehcache.xml=GBK
+encoding//src/fl885.properties=UTF-8
+encoding//src/log4j.properties=GBK
+encoding//src/spring-servlet.xml=UTF-8

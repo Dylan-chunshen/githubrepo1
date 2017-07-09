@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+    http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<description>Spring公共配置 </description>
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com,gov,platform">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<!-- JPA实体管理工厂的配置 -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+		<property name="packagesToScan" value="com,gov,platform"/><!--待扫描的实体类包，不再需要persistence.xml了-->
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!--指定实现JPA的适配器-->
+	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<!-- property name="databasePlatform" value="org.hibernate.dialect.OracleDialect" / -->
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+	</bean>
+	
+	<!-- Jpa 事务配置 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+	
+	<bean id="basicTxProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_NESTED</prop>
+				<prop key="save*">PROPAGATION_NESTED</prop>
+				<prop key="update*">PROPAGATION_NESTED</prop>
+				<prop key="edit*">PROPAGATION_NESTED</prop>
+				<prop key="del*">PROPAGATION_NESTED</prop>
+				<prop key="get*">PROPAGATION_NESTED,readOnly</prop>
+				<prop key="query*">PROPAGATION_NESTED,readOnly</prop>
+				<prop key="disPlay*">PROPAGATION_REQUIRES_NEW</prop>
+				<prop key="*">PROPAGATION_NESTED</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- bean id="baseDao" class="platform.wegov.dao.CommonDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean -->
+	
+	<!-- Spring Data Jpa配置 -->
+	<!---->
+	<!-- Dao配置
+	<jpa:repositories base-package="wegov2,gov.util.jpa"
+		repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManagerJpa"
+		factory-class="gov.util.jpa.repository.BaseRepositoryFactoryBean">
+	</jpa:repositories> -->
+	
+	
+	<!-- 使用annotation定义事务
+	<jpa:repositories base-package="wegov2,gov.util.jpa"  
+	transaction-manager-ref="transactionManager" 
+	entity-manager-factory-ref="entityManagerFactory"/>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+ 	-->
+ 	
+ 	<tx:advice id="txAdvice" >  
+	    <tx:attributes>  
+	        <tx:method name="find*" read-only="true"/>  
+	        <tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+	    </tx:attributes>  
+	</tx:advice>  
+  
+	<aop:config > 
+		<aop:pointcut expression="execution(* *..util.jpa.impl..*(..))" id="jpaPT"/>
+	    <aop:pointcut expression="execution(* *..service.impl..*(..))" id="service-pc"/>
+	    <aop:pointcut expression="execution(* *.*.service..*(..))" id="service-cimp"/>
+	    <aop:advisor advice-ref="txAdvice" pointcut-ref="service-pc" />  
+	    <aop:advisor advice-ref="txAdvice" pointcut-ref="jpaPT" /> 
+	    <aop:advisor advice-ref="txAdvice" pointcut-ref="service-cimp" />  
+	</aop:config>  
+ 	
+ 	
+	<!-- JSR303 Validator定义
+ 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	 -->
+	<!-- 数据源配置, 使用DBCP数据库连接池 -->
+		<!-- 加载资源文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:dbconfig.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定义数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="filters" value="${filters}" />
+
+		<property name="maxActive" value="${maxActive}" />
+		<property name="initialSize" value="${initialSize}" />
+		<property name="maxWait" value="${maxWait}" />
+		<property name="minIdle" value="${minIdle}" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />
+
+		<property name="validationQuery" value="${validationQuery}" />
+		<property name="testWhileIdle" value="${testWhileIdle}" />
+		<property name="testOnBorrow" value="${testOnBorrow}" />
+		<property name="testOnReturn" value="${testOnReturn}" />
+		<property name="maxOpenPreparedStatements" value="${maxOpenPreparedStatements}" />
+		<property name="removeAbandoned" value="${removeAbandoned}" /> 
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" /> 
+		<property name="logAbandoned" value="${logAbandoned}" />
+	</bean>
+	
+	  <bean id="mapper" class="org.dozer.spring.DozerBeanMapperFactoryBean">
+        	<property name="mappingFiles" 
+                  value="classpath*:/*mapping.xml"/>
+    </bean>
+	
+	<!-- 附件上传bean -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="uft-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean>
+	
+	<!-- 附件保存的路径配置 -->
+	<bean id="attachfilePath" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="fileUpload"/>
+	</bean>
+	
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
+	 
+	<import resource="spring-job.xml"/>
+	 
+</beans>

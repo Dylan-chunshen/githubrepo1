@@ -1,0 +1,195 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="user" extends="webwork-default" namespace="/platform/admin/user">
+		<interceptors>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+			<interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			
+			<interceptor-stack name="userStack">
+				<interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="OpAction">
+					<param name="opIds">PLA_USER</param>
+					<param name="errorPage">errorPage.jsp</param>
+				</interceptor-ref>
+				<interceptor-ref name="params" />
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="userStack"/>
+
+
+		<action name="EXTTreeLoad" class="wegov.platform.action.user.EXTTreeLoadAction">
+			<result name="success" type="dispatcher">EXTTreeLoad.jsp</result>
+		</action>
+
+		<action name="userAdd" class="wegov.platform.action.user.UserAddAction">
+			<result name="success" type="dispatcher">user_add.jsp</result>
+		</action>
+
+		<action name="userInfoView" class="wegov.platform.action.user.UserInfoViewAction">
+			<result name="success" type="dispatcher">user_info_view.jsp</result>
+		</action>
+
+		<action name="userInfoModify" class="wegov.platform.action.user.UserInfoViewAction">
+			<result name="success" type="dispatcher">user_info_modify.jsp</result>
+		</action>
+		
+		<action name="userExtInfoModify" class="wegov.platform.action.user.UserExtInfoViewAction">
+			<result name="success" type="dispatcher">user_ext_info_modify.jsp</result>
+		</action>
+		
+		<action name="userPdgtExtInfoModify" class="wegov.platform.action.user.UserPdgtExtInfoViewAction">
+			<result name="success" type="dispatcher">user_pdgt_ext_info_modify.jsp</result>
+		</action>
+
+		<action name="userLoginStatusModify" class="wegov.platform.action.user.UserLoginStatusModifyAction">
+		</action>
+		
+		<action name="userPasswordModify" class="wegov.platform.action.user.UserInfoViewAction">
+			<result name="success" type="dispatcher">user_password_modify.jsp</result>
+		</action>
+		
+		<action name="userExtModify" class="wegov.platform.action.user.UserExtModifyAction">
+			<result name="success" type="dispatcher">user_ext_info_modify.jsp</result>
+		</action>
+		
+		<action name="userPdgtExtModify" class="wegov.platform.action.user.UserPdgtExtModifyAction">
+			<result name="success" type="dispatcher">user_pdgt_ext_info_modify.jsp</result>
+		</action>
+
+		<action name="userModify" class="wegov.platform.action.user.UserModifyAction">
+			<result name="success" type="dispatcher">user_info_modify.jsp</result>
+		</action>
+
+		<action name="passwordModify" class="wegov.platform.action.user.PasswordModifyAction">
+			<result name="success" type="dispatcher">user_password_modify.jsp</result>
+		</action>
+		
+		
+		<action name="userCompanyView" class="wegov.platform.action.user.UserCompanyViewAction">
+			<result name="success" type="dispatcher">user_company_view.jsp</result>
+		</action>
+
+		<action name="userCompanyModify" class="wegov.platform.action.user.UserCompanyViewAction">
+			<result name="success" type="dispatcher">user_company_modify.jsp</result>
+		</action>
+
+		<action name="userInfoList" class="wegov.platform.action.user.UserInfoListAction">
+			<result name="success" type="dispatcher">user_info_list.jsp</result>
+		</action>
+		
+		<action name="userInfotreeList" class="wegov.platform.action.user.UserInfoListAction">
+			<result name="success" type="dispatcher">user_treelist.jsp</result>
+		</action>
+		
+		<action name="userConnectionGet" class="wegov.platform.action.user.UserConnectionGetAction">
+			<result name="success" type="dispatcher">user_connection_set.jsp</result>
+		</action>
+		
+		<action name="userConnectionSave" class="wegov.platform.action.user.UserConnectionSaveAction">
+			<result name="success" type="chain">
+				<param name="actionName">userConnectionGet</param>
+				<param name="namespace">/pdtz/platform/admin/user</param>				
+			</result>		
+		</action>
+
+		<action name="userAddInit" class="wegov.platform.action.user.UserAddInitAction">
+			<result name="success" type="dispatcher">user_add.jsp</result>
+		</action>
+
+		<action name="userDel" class="wegov.platform.action.user.UserDelAction">
+			<result name="success" type="chain"><param name="actionName">userInfoList</param></result>
+		</action>
+
+		<action name="userPowerList" class="wegov.platform.action.user.UserPowerListAction">
+			<result name="success" type="dispatcher">user_power_set.jsp</result>
+		</action>
+		
+		<action name="userPowerDiff" class="wegov.platform.action.user.UserPowerDiffAction">
+			<result name="success" type="dispatcher">user_power_diff.jsp</result>
+		</action>
+
+		<action name="powerList" class="wegov.platform.action.user.PowerListAction">
+			<result name="success" type="dispatcher">power_list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="powerSave" class="wegov.platform.action.user.PowerSaveAction">
+			<result name="success" type="dispatcher">power_list.jsp</result>
+		</action>
+
+		<action name="userQuery" class="wegov.platform.action.user.UserQueryAction">
+			<result name="success" type="dispatcher">user_query_result.jsp</result>
+		</action>
+
+		<action name="userQueryInit" class="wegov.platform.action.user.UserQueryInitAction">
+			<result name="success" type="dispatcher">user_query.jsp</result>
+		</action>
+
+		<action name="unitTreeList" class="wegov.platform.action.user.UnitTreeListAction">
+			<result name="success" type="dispatcher">unit_tree_list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="userCompanySave" class="wegov.platform.action.user.UserCompanySaveAction">
+			<result name="success" type="dispatcher">user_company_modify.jsp</result>
+		</action>
+
+		<action name="userQueryDel" class="wegov.platform.action.user.UserDelAction">
+			<result name="success" type="chain"><param name="actionName">userQuery</param></result>
+		</action>
+
+		<action name="userRepeatCheck" class="wegov.platform.action.user.UserRepeatCheckAction">
+			<!--  <result name="success" type="dispatcher">user_add.jsp</result>-->
+		</action>
+
+		<action name="userDefaultCompanySet" class="wegov.platform.action.user.UserDefaultCompanySetAction">
+			<result name="success" type="dispatcher">user_defaultCompany_set.jsp</result>
+		</action>
+		
+		<action name="leaderSectionsView" class="wegov.platform.action.user.LeaderSectionsViewAction">
+			<result name="success" type="dispatcher">leader_sections_view.jsp</result>
+		</action>
+
+		<action name="leaderSectionsModify" class="wegov.platform.action.user.LeaderSectionsViewAction">
+			<result name="success" type="dispatcher">leader_sections_modify.jsp</result>
+		</action>
+		
+		<action name="leaderSectionsSave" class="wegov.platform.action.user.LeaderSectionsSaveAction">
+			<result name="success" type="dispatcher">leader_sections_modify.jsp</result>
+		</action>
+
+		<action name="getAllRoleGroupList" class="wegov.platform.action.user.RoleGroupSetAction">
+			<result name="success" type="dispatcher">user_roleGroup_set.jsp</result>
+		</action>
+		<action name="roleGroupPowerSave" class="wegov.platform.action.user.RoleGroupSaveAction">
+			<result name="success" type="dispatcher">user_roleGroup_set.jsp</result>
+		</action>
+		
+		<action name="userExcelExport" class="wegov.platform.action.user.UserExcelExportAction">
+			<result name="success" type="stream">
+	    	<param name="inputName">inputStream</param>
+		    <param name="contentType">${contentType}</param>
+		    <param name="contentDisposition">attachment;filename="${fileName}"</param>
+		    <param name="bufferSize">2048</param>
+		    </result>
+		</action>
+		
+		<action name="fileUpload" class="wegov.platform.action.user.UploadAction">
+		    <interceptor-ref name="fileUpload" /> 
+            <interceptor-ref name="defaultStack" />
+			<result name="success" type="dispatcher">../../../upload_excel.jsp</result>
+		</action>
+		
+		<action name="userQueryExcelExport" class="wegov.platform.action.user.UserQueryExcelExportAction">
+			<result name="success" type="stream">
+	    	<param name="inputName">inputStream</param>
+		    <param name="contentType">${contentType}</param>
+		    <param name="contentDisposition">attachment;filename="${fileName}"</param>
+		    <param name="bufferSize">2048</param>
+		    </result>
+		</action>
+	</package>
+</xwork>

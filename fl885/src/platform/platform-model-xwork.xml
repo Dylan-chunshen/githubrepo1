@@ -1,0 +1,38 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="model" extends="webwork-default" namespace="/platform/admin/model">
+		<default-interceptor-ref name="completeStack"/>
+		<action name="composerList" class="wegov.platform.action.model.ComposerListAction">
+			<result name="success" type="dispatcher">composer_list.jsp</result>
+		</action>
+		<action name="modelList" class="wegov.platform.action.model.ModelListAction">
+			<result name="success" type="dispatcher">model_list.jsp</result>
+		</action>
+		<action name="modelGet" class="wegov.platform.action.code.CodeGetAction">
+			<result name="success" type="dispatcher">model_get.jsp</result>
+		</action>
+		<action name="modelSave" class="wegov.platform.action.model.ModelSaveAction">
+			<result name="success" type="dispatcher">model_get.jsp</result>
+		</action>
+		<action name="composerGet" class="wegov.platform.action.code.CodeGetAction">
+			<result name="success" type="dispatcher">model_edit.jsp</result>			
+		</action>
+		<action name="composerSave" class="wegov.platform.action.code.CodeSaveAction">
+			<result name="success" type="dispatcher">model_edit.jsp</result>
+		</action>
+		<action name="composerDel" class="wegov.platform.action.code.CodeDelAction">
+			<result name="success" type="chain">
+				<param name="actionName">composerList</param>
+				<param name="namespace">/platform/admin/model</param>				
+			</result>
+		</action> 
+		<action name="modelDel" class="wegov.platform.action.model.ModelDelAction">
+			<result name="success" type="chain">
+				<param name="actionName">modelList</param>
+				<param name="namespace">/platform/admin/model</param>				
+			</result>
+		</action>
+	</package>
+</xwork>

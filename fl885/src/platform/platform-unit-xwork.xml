@@ -1,0 +1,104 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" 
+"http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+<xwork>
+	<!-- Configuration for the default package. -->
+	<package name="unit" extends="webwork-default" namespace="/platform/admin/unit">
+		<interceptors>
+			<interceptor name="OpAction" class="wegov.platform.action.OpActionInterceptor"/>
+			<interceptor name="LogInterceptor" class="wegov.platform.action.LogInterceptor"/>
+			
+			<interceptor-stack name="unitStack">
+				<interceptor-ref name="LogInterceptor"/>
+				<interceptor-ref name="OpAction">
+					<param name="opIds">PLA_ORG</param>
+					<param name="errorPage">errorPage.jsp</param>
+				</interceptor-ref>
+				<interceptor-ref name="params" />
+				<interceptor-ref name="chainStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="unitStack"/>
+
+		<action name="unit_info_view" class="wegov.platform.action.unit.UnitGetAction">
+			<result name="success" type="dispatcher">unit_info_view.jsp</result>
+		</action>
+
+		<action name="unit_info_edit" class="wegov.platform.action.unit.UnitGetAction">
+			<result name="success" type="dispatcher">unit_info_edit.jsp</result>
+		</action>
+		
+		<action name="unit_info_save" class="wegov.platform.action.unit.UnitSaveAction">
+			<result name="success" type="dispatcher">unit_winAction.jsp</result>
+		</action>
+
+		<action name="subUnit_list" class="wegov.platform.action.unit.SubUnitListAction">
+			<result name="success" type="dispatcher">subUnit_list.jsp</result>
+		</action>
+
+		<action name="subUnit_treelist" class="wegov.platform.action.unit.SubUnitListAction">
+			<result name="success" type="dispatcher">subUnit_treelist.jsp</result>
+		</action>
+
+		<action name="subUnit_add" class="wegov.platform.action.unit.UnitGetAction">
+			<result name="success" type="dispatcher">subUnit_add.jsp</result>
+		</action>
+
+		<action name="subUnit_edit" class="wegov.platform.action.unit.SubUnitListAction">
+			<result name="success" type="dispatcher">subUnit_edit.jsp</result>
+		</action>
+
+		<action name="subUnit_selSave" class="wegov.platform.action.unit.SubUnitSelSaveAction">
+			<result name="success" type="chain">
+				<param name="actionName">subUnit_edit</param>
+			</result>
+		</action>
+
+		<action name="subUnit_save" class="wegov.platform.action.unit.UnitSaveAction">
+			<result name="success" type="dispatcher">unit_winAction.jsp</result>
+		</action>
+
+		<action name="subUnit_del" class="wegov.platform.action.unit.UnitDelectAction">
+			<result name="success" type="chain">
+				<param name="actionName">subUnit_list</param>
+			</result>
+			<result name="top" type="chain">
+				<param name="actionName">unit_topUnit_list</param>
+			</result>
+		</action>
+		
+		<action name="supUnit_list" class="wegov.platform.action.unit.SupUnitListAction">
+			<result name="success" type="dispatcher">supUnit_list.jsp</result>
+		</action>
+
+		<action name="supUnit_edit" class="wegov.platform.action.unit.SupUnitListAction">
+			<result name="success" type="dispatcher">supUnit_edit.jsp</result>
+		</action>
+
+		<action name="supUnit_selSave" class="wegov.platform.action.unit.SupUnitSelSaveAction">
+			<result name="success" type="chain">
+				<param name="actionName">supUnit_edit</param>
+			</result>
+		</action>
+
+		<action name="unit_query" class="wegov.platform.action.unit.UnitListAction">
+			<result name="success" type="dispatcher">unit_query.jsp</result>
+		</action>
+
+		<action name="unit_query_del" class="wegov.platform.action.unit.UnitDelectAction">
+			<result name="success" type="chain">
+				<param name="actionName">unit_query</param>
+			</result>
+		</action>
+
+		<action name="unit_topUnit_list" class="wegov.platform.action.unit.TopUnitListAction">
+			<result name="success" type="dispatcher">unit_topUnit_list.jsp</result>
+		</action>
+
+		<action name="otherUnit_list" class="wegov.platform.action.unit.OtherUnitlistAction">
+			<result name="success" type="dispatcher">otherUnit_list.jsp</result>
+		</action>
+		
+		<action name="unit_repeat_check" class="wegov.platform.action.unit.UnitRepeatCheckAction">
+		</action>
+	</package>
+</xwork>

@@ -1,0 +1,11 @@
+jslib_header引入说明
+1、引用jslib_header.jsp使用以下方式
+<jsp:include page="/js-library/jslib_header.jsp">
+	<jsp:param value="1.3.1" name="ev"/>
+<jsp:param value="true" name="isAnnex"/>
+</jsp:include>
+
+2、参数说明
+a.ev：使用easyui的版本。目前支持1.2.1,1.2.6和1.3.1.默认为1.2.1
+b.isAnnex：是否使用annex附件上传控件。只有为“true”时使用，否则一概不加载
+c.isTooltip：是否使用工具提示插件。只有为“true”时使用，否则一概不加载
