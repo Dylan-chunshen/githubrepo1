@@ -89,5 +89,7 @@ public class Native2AsciiUtils {
     public static void main(String[] args){
     	String a1 = Native2AsciiUtils.ascii2Native("\u534e\u5357");
     	System.out.println(a1);
+    	String a2 = Native2AsciiUtils.native2Ascii("·¨ÂÉ");
+    	System.out.println(a2);
 	}
 }
