@@ -4,10 +4,6 @@ import java.util.Map;
 
 import platform.login.bo.PubUserBo;
 
-
-//import com.wondersgroup.framework.organization.bo.OrganNode;
-//import com.wondersgroup.framework.security.bo.SecurityUser;
-
 public interface LoginService{
 	
 	/**
@@ -26,6 +22,12 @@ public interface LoginService{
 	 * @return
 	 */
 	public PubUserBo getPubUserBoBy(String phone);
+	
+	/**
+	 * 获取当前可用的公共用户编号
+	 * @return String
+	 */
+	public String getMaxPubUserCodeNow();
 	
 //	public void saveWegovTeamInfo(OrganNode organ);
 	

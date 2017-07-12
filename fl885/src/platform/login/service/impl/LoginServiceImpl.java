@@ -35,7 +35,7 @@ public class LoginServiceImpl extends BaseJpaServiceImpl implements LoginService
 		return commonDao;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Map<String, String> registerPubUser(String phone, String name, String password, String ip){
 		Map resultMap = new HashMap<String, String>();
@@ -52,7 +52,9 @@ public class LoginServiceImpl extends BaseJpaServiceImpl implements LoginService
 				String city_name = (ipMap!=null&&ipMap.containsKey("city"))?ipMap.get("city").toString():"";
 				password = (StringUtils.isNotBlank(password))?password.trim():(StringUtils.isNotBlank(phone))?phone.substring(phone.trim().length()-4, phone.trim().length()):"111111";
 				String passwordMD5 = MD5Utils.MD5(password.trim());
+				String pubUserCode = getMaxPubUserCodeNow();
 				PubUserBo pubUserBoNew = new PubUserBo();
+				pubUserBoNew.setPublic_user_code(pubUserCode);
 				pubUserBoNew.setCity_code(city_code);
 				pubUserBoNew.setCity_name(city_name);
 				pubUserBoNew.setProvince_code(province_code);
@@ -88,6 +90,20 @@ public class LoginServiceImpl extends BaseJpaServiceImpl implements LoginService
 			}
 		}
 		return resultPubUser;
+	}
+
+	/**
+	 * 获取当前可用的公共用户编号
+	 * @return String
+	 */
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String getMaxPubUserCodeNow(){
+		String sqlText = " select max(cast(public_user_code as unsigned int)) from public_user ";
+		List resultList = commonDao.executeSqlQuery(sqlText, null);
+		String codeStr = (resultList!=null&&resultList.size()>0)?resultList.get(0).toString().trim():"";
+		int codeInt = (StringUtils.isNotBlank(codeStr))?Integer.parseInt(codeStr)+1:1000;
+		return codeInt+"";
 	}
 
 }
