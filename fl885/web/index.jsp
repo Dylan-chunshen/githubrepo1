@@ -1,7 +1,23 @@
+<%@ page language="java" import="java.util.*" pageEncoding="GBK" %>
+<%@page import="org.apache.commons.lang.StringUtils"%>
+<%@page import="platform.login.bo.PubUserBo"%>
+<%
+String currentRole = (String)session.getAttribute("CURRENTROLE");
+String userId = "";
+String userCode = "";
+String userName = "";
+if(StringUtils.isNotBlank(currentRole)&&"PUBUSER".equalsIgnoreCase(currentRole)){
+	PubUserBo currentPerson = (session.getAttribute("CURRENTPERSON")!=null)?(PubUserBo)session.getAttribute("CURRENTPERSON"):null;
+	if(currentPerson!=null){
+		userId = currentPerson.getPublic_user_id();
+		userCode = currentPerson.getPublic_user_code();
+		userName = currentPerson.getPublic_user_name();
+	}
+}
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<%@ page language="java" import="java.util.*" pageEncoding="GBK" %>
 <%@include file="/js-library/jsp_common_header.jsp"%>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
@@ -9,9 +25,9 @@
 <meta name="keywords" content="法律帮帮网，法律服务，找律师，打官司，免费法律咨询" />
 <meta name="description" content="法律帮帮网- 专业法律O2O平台，海量优秀律师，首创律师竞标模式，让你的利益最大化；平台暂管律师服务费，律师服务出问题先行赔付。找律师，打官司，免费法律咨询更靠谱。" />
 <link rel="shortcut icon" type="image/ico" href="http://www.yingle.com/c/static/i/favicon-v4.png" />
-<link rel="stylesheet" href="css/index1.css" type="text/css" />
-<link rel="stylesheet" href="css/index4.css" type="text/css" />
-<script type="text/javascript" src="js/common2.js"></script>
+<link rel="stylesheet" href="/css/index1.css" type="text/css" />
+<link rel="stylesheet" href="/css/index4.css" type="text/css" />
+<script type="text/javascript" src="/js/common2.js"></script>
 <script>
 function MyAutoRun(){
 	var a = document.body.scrollWidth;
@@ -26,13 +42,13 @@ function locationTo(url){
 
 /** 跳转到注册界面 **/
 function registerLocal(){
-	var regUrl = "login/registerPubUser.html";
+	var regUrl = "/login/registerPubUser.html";
 	locationto(regUrl,"_blank",null);
 }
 
 /** 跳转到登录界面   **/
 function loginLocal(){
-	var regUrl = "login/loginPubUser.html";
+	var regUrl = "/login/loginPubUser.html";
 	locationto(regUrl,"_blank",null);
 }
 </script>
@@ -70,8 +86,12 @@ function loginLocal(){
 					</ul>
 				</nav>
 				<div class="header-login">
+				<%if(StringUtils.isNotBlank(userId)){%>
+				    <a href="#" class="ui-link ui-widget btn btn-default"><%=userName+"("+userCode+")" %></a>
+				<%}else{%>
 					<a href="#" onClick="javascript:loginLocal();" class="ui-link ui-widget btn btn-default">登录</a>
 					<a href="#" onClick="javascript:registerLocal();" class="ui-link ui-widget btn btn-default">注册</a>
+				<%}%>
 				</div>
 			</div>
 		</header>	
@@ -81,9 +101,9 @@ function loginLocal(){
 	<div class="index-content">
 		<div class="index-banner">
 			<div class="banner-main" style="height:360px;margin-bottom:0px;">
-				<div id="indexDiv" style="height:500px;background-image:url(image/index_1.png);background-repeat:no-repeat;width:1080px;height:350px;margin-top:0px;padding-top:0px;">
-					<div onmouseover="this.style.cursor='pointer'" style="height:360px;width:50%;float:left;" onclick="javascript:locationTo('entrust/entrust-edit.html')"></div>
-					<div onmouseover="this.style.cursor='pointer'" style="height:360px;width:50%;float:left;" onclick="javascript:locationTo('consult/consult-edit.html')"></div>
+				<div id="indexDiv" style="height:500px;background-image:url(/image/index_1.png);background-repeat:no-repeat;width:1080px;height:350px;margin-top:0px;padding-top:0px;">
+					<div onmouseover="this.style.cursor='pointer'" style="height:360px;width:50%;float:left;" onclick="javascript:locationTo('/entrust/entrust-edit.html')"></div>
+					<div onmouseover="this.style.cursor='pointer'" style="height:360px;width:50%;float:left;" onclick="javascript:locationTo('/consult/consult-edit.html')"></div>
 				</div>
 				<h2 style="height:80px;padding-bottom:5px;margin-bottom:20px;">丽水人自己的在线法律服务平台</h2>
 			</div>
