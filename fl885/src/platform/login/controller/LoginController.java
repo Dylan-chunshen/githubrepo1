@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import platform.login.bo.PubUserBo;
 import platform.login.service.LoginService;
 import platform.utils.MD5Utils;
 import wegov.platform.OrgQHelper;
@@ -171,11 +173,18 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "loginPubUser.action")
-	@ResponseBody
 	public String loginPubUserAction(HttpServletRequest request,HttpServletResponse response,Map<String, Object> model){
 		String phone = (request.getParameter("phone")!=null)?request.getParameter("phone").toString().trim():"";
 		String password = (request.getParameter("password")!=null)?request.getParameter("password").toString().trim():"";
 		Map<String, String> resultMap = loginService.loginPubUser(phone, password);
-		return resultMap.get("result").toString();
+		if(resultMap.containsKey("result")&&"SUCCESS".equalsIgnoreCase(resultMap.get("result").toString().trim())){
+			HttpSession session = request.getSession();
+			PubUserBo pubUserBo = loginService.getPubUserBoBy(phone);
+			session.setAttribute("CURRENTPERSON", pubUserBo);
+			session.setAttribute("CURRENTROLE", "PUBUSER");
+			return "/index";
+		}else{
+			return "/page/platform/loginPubUser";
+		}
 	}
 }
