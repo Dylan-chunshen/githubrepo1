@@ -13,16 +13,6 @@
 <link rel="stylesheet" href="../../css/register3.css"/>
 <link rel="stylesheet" href="../../css/register4.css"/>
 <script type="text/javascript" src="/js/common2.js"></script>
-<script>
-function registerPubUser(){
-	alert("77777777777777");
-	var phone = $("#phone").val();
-	var name = $("#name").val();
-	var password = $("#password").val();
-	var regPubUserUrl = "/login/registerPubUser.action";
-	locationto(regPubUserUrl,"_self",{"phone":phone;"name":name;"password":password});
-}
-</script>
 </head>
 <body class="signup zh">
     <section class="content">
@@ -52,7 +42,7 @@ function registerPubUser(){
 			</div>
 			<div class="login-links">
 			  <div class="horizontal-line"></div>
-				<a href="/login?" class="btn btn-primary anim-blue">ÒÑÓÐÕËºÅ£¿µÇÂ¼<span class="icon icon-upload"></span></a>
+				<a href="/login/loginPubUser.html" class="btn btn-primary anim-blue">ÒÑÓÐÕËºÅ£¿µÇÂ¼<span class="icon icon-upload"></span></a>
 			</div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import gov.util.jpa.Query;
 import gov.util.jpa.impl.BaseJpaServiceImpl;
 import gov.util.jpa.operator.FilterOperator;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -106,6 +107,35 @@ public class LoginServiceImpl extends BaseJpaServiceImpl implements LoginService
 		String codeStr = (resultList!=null&&resultList.size()>0&&resultList.get(0)!=null)?resultList.get(0).toString().trim():"";
 		int codeInt = (StringUtils.isNotBlank(codeStr))?Integer.parseInt(codeStr)+1:1000;
 		return codeInt+"";
+	}
+
+	/**
+	 * ¹«ÖÚÕËºÅµÄµÇÂ¼
+	 * @param phone
+	 * @param password
+	 * @return
+	 */
+	@Override
+	public Map<String, String> loginPubUser(String phone, String password){
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if(StringUtils.isNotBlank(phone)){
+			PubUserBo pubUserBoHave = getPubUserBoBy(phone);
+			if(pubUserBoHave!=null&&StringUtils.isNotBlank(pubUserBoHave.getPublic_user_id())){
+				String passwordHave = (StringUtils.isNotBlank(pubUserBoHave.getPassword()))?pubUserBoHave.getPassword():"";
+				String passwordPage = MD5Utils.MD5(password.trim());
+				if(passwordHave.equalsIgnoreCase(passwordPage)){
+					resultMap.put("result", "SUCCESS");
+					resultMap.put("phone", pubUserBoHave.getPublic_user_tel());
+				}else{
+					resultMap.put("result", "PASSWORD_ERROR");
+					resultMap.put("phone", pubUserBoHave.getPublic_user_tel());
+				}
+			}else{
+				resultMap.put("result", "FAIL");
+				resultMap.put("phone", "");
+			}
+		}
+		return resultMap;
 	}
 
 }

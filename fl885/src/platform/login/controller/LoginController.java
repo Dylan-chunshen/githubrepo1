@@ -120,11 +120,25 @@ public class LoginController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "register.html")
+	@RequestMapping(value = "registerPubUser.html")
 	public String registerCommon(HttpServletRequest request,HttpServletResponse response,Map<String, Object> model){
 		request.getSession().removeAttribute("roleType");
 		request.getSession().removeAttribute("currentPerson");
-		return "/page/platform/register";
+		return "/page/platform/registerPubUser";
+	}
+	
+	/**
+	 * 跳转到用户注册页面
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "loginPubUser.html")
+	public String loginPubUserHtml(HttpServletRequest request,HttpServletResponse response,Map<String, Object> model){
+		request.getSession().removeAttribute("roleType");
+		request.getSession().removeAttribute("currentPerson");
+		return "/page/platform/loginPubUser";
 	}
 	
 	/**
@@ -149,4 +163,19 @@ public class LoginController {
 		return resultMap.get("result").toString();
 	}
 
+	/**
+	 * 公众用户的注册action处理
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "loginPubUser.action")
+	@ResponseBody
+	public String loginPubUserAction(HttpServletRequest request,HttpServletResponse response,Map<String, Object> model){
+		String phone = (request.getParameter("phone")!=null)?request.getParameter("phone").toString().trim():"";
+		String password = (request.getParameter("password")!=null)?request.getParameter("password").toString().trim():"";
+		Map<String, String> resultMap = loginService.loginPubUser(phone, password);
+		return resultMap.get("result").toString();
+	}
 }

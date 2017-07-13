@@ -17,6 +17,14 @@ public interface LoginService{
 	public Map<String, String> registerPubUser(String phone, String name, String password, String ip);
 	
 	/**
+	 * 公众账号的登录
+	 * @param phone
+	 * @param password
+	 * @return
+	 */
+	public Map<String, String> loginPubUser(String phone, String password);
+	
+	/**
 	 * 通过手机号获取已存在账户
 	 * @param phone
 	 * @return

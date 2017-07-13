@@ -24,9 +24,15 @@ function locationTo(url){
 	locationto(url, "_blank",null);
 }
 
-/** 跳转到登陆界面 **/
+/** 跳转到注册界面 **/
 function registerLocal(){
-	var regUrl = "login/register.html";
+	var regUrl = "login/registerPubUser.html";
+	locationto(regUrl,"_blank",null);
+}
+
+/** 跳转到登录界面   **/
+function loginLocal(){
+	var regUrl = "login/loginPubUser.html";
 	locationto(regUrl,"_blank",null);
 }
 </script>
@@ -64,7 +70,7 @@ function registerLocal(){
 					</ul>
 				</nav>
 				<div class="header-login">
-					<a href="/c/faces/pc/login;jsessionid=8eb2f33f6a59677181c6be5532bd" class="ui-link ui-widget btn btn-default">登录</a>
+					<a href="#" onClick="javascript:loginLocal();" class="ui-link ui-widget btn btn-default">登录</a>
 					<a href="#" onClick="javascript:registerLocal();" class="ui-link ui-widget btn btn-default">注册</a>
 				</div>
 			</div>
