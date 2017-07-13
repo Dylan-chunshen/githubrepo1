@@ -141,6 +141,8 @@ public class LoginController {
 		String name = (request.getParameter("name")!=null)?request.getParameter("name").toString().trim():"";
 		String password = (request.getParameter("password")!=null)?request.getParameter("password").toString().trim():"";
 		String ip = "58.251.160.199";
+		String ip2 = request.getRemoteAddr();
+		System.out.println("============="+ip2);
 		Map<String, String> resultMap = loginService.registerPubUser(phone, name, password, ip);
 		
 //		return "/page/platform/register";

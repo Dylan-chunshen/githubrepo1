@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import platform.login.bo.PubUserBo;
 import platform.login.service.LoginService;
 import platform.utils.MD5Utils;
+import wad2.vdm.result;
 
 import com.edubean.common.dao.CommonDao;
 import com.edubean.common.util.IPUtil;
@@ -55,6 +56,7 @@ public class LoginServiceImpl extends BaseJpaServiceImpl implements LoginService
 				String pubUserCode = getMaxPubUserCodeNow();
 				PubUserBo pubUserBoNew = new PubUserBo();
 				pubUserBoNew.setPublic_user_code(pubUserCode);
+				pubUserBoNew.setPublic_user_name(StringUtils.isNotBlank(name)?name.trim():"");
 				pubUserBoNew.setCity_code(city_code);
 				pubUserBoNew.setCity_name(city_name);
 				pubUserBoNew.setProvince_code(province_code);
@@ -101,7 +103,7 @@ public class LoginServiceImpl extends BaseJpaServiceImpl implements LoginService
 	public String getMaxPubUserCodeNow(){
 		String sqlText = " select max(cast(public_user_code as unsigned int)) from public_user ";
 		List resultList = commonDao.executeSqlQuery(sqlText, null);
-		String codeStr = (resultList!=null&&resultList.size()>0)?resultList.get(0).toString().trim():"";
+		String codeStr = (resultList!=null&&resultList.size()>0&&resultList.get(0)!=null)?resultList.get(0).toString().trim():"";
 		int codeInt = (StringUtils.isNotBlank(codeStr))?Integer.parseInt(codeStr)+1:1000;
 		return codeInt+"";
 	}

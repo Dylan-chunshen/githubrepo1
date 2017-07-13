@@ -30,6 +30,8 @@ public class PubUserBo implements Serializable{
 	private String public_user_id;
 	
 	private String public_user_code;
+	
+	private String public_user_name;
 
 	private String public_user_tel;
 
@@ -172,4 +174,13 @@ public class PubUserBo implements Serializable{
 	public void setIs_removed(String is_removed) {
 		this.is_removed = is_removed;
 	}
+	
+	@Column(name = "public_user_name")
+	public String getPublic_user_name() {
+		return public_user_name;
+	}
+	public void setPublic_user_name(String public_user_name) {
+		this.public_user_name = public_user_name;
+	}
+	
 }

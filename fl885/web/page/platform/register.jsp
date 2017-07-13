@@ -41,47 +41,11 @@ function registerPubUser(){
 					<input type="text" name="name" placeholder='您的名字' autocomplete="off" value="" required class="form-control name" />
 				</div>
 				<div class="form-field passwordClear">
-					<input type="text" name="password" placeholder="密码（字母，数字，至少6位）" autocomplete="off" required class="form-control password" />
+					<input type="password" name="password" placeholder="密码（字母，数字，至少6位）" autocomplete="off" required class="form-control password" />
 				</div>
 				<button type="submit" data-gta="event" data-label="signup-direct" class="btn btn-primary anim-blue-all submit">
 					注 册<span class="icon icon-upload"></span>
 				</button>
-			</form>
-			<form class="auth-form phone-form" action="" method="post" style="display: none;">
-				<div class="form-field">
-					<div class="phone-country form-control">
-						<div class="phone-number-wrap">
-							<input type="tel" name="phone" placeholder="手机号" autocomplete="off" value="" class="form-control phone phone-number cea-placeholder" autofocus required autocomplete="off"/>
-						</div>
-					</div>
-					<div class="verify-image-wrap" data-host="https://auth_services.teambition.com/captcha">
-						<div class="loading-indicator">
-							<span class="loader-dot"></span>
-							<span class="loader-dot"></span>
-							<span class="loader-dot"></span>
-						</div>
-					</div>
-				</div>
-				<button type="submit" class="btn btn-primary verification anim-blue-all">
-					下一步<span class="icon icon-upload"></span>
-				</button>
-			</form>
-			<form action="" method="post" class="auth-form create-bind-form" style="display: none;">
-			  <input type="hidden" name="source" value="teambition">
-			  <input type="hidden" name="next_url" value="">
-			  <input type="hidden" name="phone" value="">
-			  <div class="form-field">
-				<input type="email" name="email" id="email" placeholder="邮箱" autocomplete="off" value="" required class="form-control email" autofocus />
-			  </div>
-			  <div class="form-field username">
-				<input type="text" name="name" placeholder='您的名字' autocomplete="off" value="" required class="form-control name" />
-			  </div>
-			  <div class="form-field passwordClear">
-				<input type="text" placeholder="密码（字母，数字，至少6位）" autocomplete="off" name="password" required class="form-control password" />
-			  </div>
-			  <button type="submit" data-gta="event" data-label="signup-direct" class="btn btn-primary submit anim-blue-all">
-				<span class="btn-text">注 册</span><span class="icon icon-upload"></span>
-			  </button>
 			</form>
 			<div class="privacy-field">
 			  点击注册，即同意我们的 <a href="https://www.teambition.com/privacy?p=signup&s=account" target="_blank">用户隐私条款</a>
