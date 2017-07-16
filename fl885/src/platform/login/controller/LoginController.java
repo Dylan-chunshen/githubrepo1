@@ -102,9 +102,9 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "userLogout.html")
 	public String userLogout(HttpServletRequest request,HttpServletResponse response,Map<String, Object> model){
-		request.getSession().removeAttribute("roleType");
-		request.getSession().removeAttribute("currentPerson");
-		return "/login";
+		request.getSession().removeAttribute("CURRENTROLE");
+		request.getSession().removeAttribute("CURRENTPERSON");
+		return "/index";
 	}
 
 	private Cookie createCookie(String name, String value) {

@@ -18,9 +18,12 @@ if(StringUtils.isNotBlank(currentRole)&&"PUBUSER".equalsIgnoreCase(currentRole))
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<%@include file="/js-library/jsp_common_header.jsp"%>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<%@include file="/js-library/jsp_common_dropdown.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <title>法律帮帮网-丽水在线法律服务平台</title>
 <meta name="keywords" content="法律帮帮网，法律服务，找律师，打官司，免费法律咨询" />
 <meta name="description" content="法律帮帮网- 专业法律O2O平台，海量优秀律师，首创律师竞标模式，让你的利益最大化；平台暂管律师服务费，律师服务出问题先行赔付。找律师，打官司，免费法律咨询更靠谱。" />
@@ -29,6 +32,19 @@ if(StringUtils.isNotBlank(currentRole)&&"PUBUSER".equalsIgnoreCase(currentRole))
 <link rel="stylesheet" href="/css/index4.css" type="text/css" />
 <script type="text/javascript" src="/js/common2.js"></script>
 <script>
+$(document).ready(function(){
+  $(".ui.menu .ui.dropdown").dropdown({
+    on: 'hover'
+  });
+  $('.ui.menu a.item').on('click', function(){
+      $(this)
+        .addClass('active')
+        .siblings()
+        .removeClass('active')
+      ;
+    });
+});
+
 function MyAutoRun(){
 	var a = document.body.scrollWidth;
 	var b = document.body.scrollHeight;
@@ -74,10 +90,10 @@ function loginLocal(){
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li>
-									<a href="/c/faces/pc/lawsuit/entry"><span class="icon icon-hammer"></span>案件委托</a>
+									<a href="/c/faces/pc/lawsuit/entry"><span class="icon1 icon-hammer"></span>案件委托</a>
 								</li>
 								<li>
-									<a href="/c/faces/pc/consultation/submit"><span class="icon icon-bubble"></span>法律咨询</a>
+									<a href="/c/faces/pc/consultation/submit"><span class="icon1 icon-bubble"></span>法律咨询</a>
 								</li>
 							</ul>
 						</li>
@@ -85,14 +101,39 @@ function loginLocal(){
 						</li>
 					</ul>
 				</nav>
-				<div class="header-login">
 				<%if(StringUtils.isNotBlank(userId)){%>
-				    <a href="#" class="ui-link ui-widget btn btn-default"><%=userName+"("+userCode+")" %></a>
+				<div class="header-logined style="float:left;">
+					<div class="ui secondary menu" style="width:110px;margin-top:8px;">
+						<div class="ui dropdown item">
+							<table style="margin-top:0px;">
+								<tr>
+									<td><span><img src="/image/login/account.png" style="width:28px;height:28px;margin-top:0px;"/></span></td>
+									<td style="font-size:12px;">&nbsp;<span><%=userName%><br/>
+							          &nbsp;ID:<%=userCode %>
+							    	</span></td>
+								</tr>
+					    	</table><i class="dropdown icon"></i>
+						    <div class="menu">
+						        <a class="item">个人信息</a>
+						        <div class="divider"></div>
+						        <a class="item">我的案件</a>
+						        <div class="divider"></div>
+						        <a class="item">我的关注</a>
+						        <div class="divider"></div>
+						        <a onclick="javascript:locationTo('/login/userLogout.html','_self')" class="item">退出登录</a>
+						      </div>
+					    </div>
+					    <div style="width:100px;margin-top:8px;display:inline;">
+							<div style="width:30px;float:left;"><img src="/image/login/message.png" style="width:32px;height:32px;margin-top:0px;"/></div>
+						</div>
+					</div>
+				</div>
 				<%}else{%>
+				<div class="header-login">
 					<a href="#" onClick="javascript:loginLocal();" class="ui-link ui-widget btn btn-default">登录</a>
 					<a href="#" onClick="javascript:registerLocal();" class="ui-link ui-widget btn btn-default">注册</a>
-				<%}%>
 				</div>
+				<%}%>
 			</div>
 		</header>	
 		<input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="-1579162567859092081:-7547364213251950871" autocomplete="off" />
@@ -109,7 +150,6 @@ function loginLocal(){
 			</div>
 		</div>
     </div>
-            
 </div>
  </body>
 </html>
