@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import platform.login.bo.PubUserBo;
+import platform.login.common.LoginConst;
 import platform.login.service.LoginService;
 import platform.utils.MD5Utils;
 import wegov.platform.OrgQHelper;
@@ -181,10 +182,29 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			PubUserBo pubUserBo = loginService.getPubUserBoBy(phone);
 			session.setAttribute("CURRENTPERSON", pubUserBo);
-			session.setAttribute("CURRENTROLE", "PUBUSER");
+			session.setAttribute("CURRENTROLE", LoginConst.ROLE_PUBUSER);
 			return "/index";
 		}else{
 			return "/page/platform/loginPubUser";
 		}
 	}
+	
+	/**
+	 * 公众用户的注册action处理
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "viewPerson.do")
+	public String viewPersonDo(HttpServletRequest request,HttpServletResponse response,Map<String, Object> model){
+		String currentRole = (request.getParameter("currentRole")!=null)?request.getParameter("currentRole").toString().trim():"";
+		String userId = (request.getParameter("userId")!=null)?request.getParameter("userId").toString().trim():"";
+		if(LoginConst.ROLE_PUBUSER.equalsIgnoreCase(currentRole)&&StringUtils.isNotBlank(userId)){
+			PubUserBo pubUserBo = commonService.find(PubUserBo.class, userId.trim());
+			model.put("pubUserBo", pubUserBo);
+		}
+		return "/page/platform/viewPubUser";
+	}	
+		
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK" %>
+<%@page import="platform.login.common.LoginConst"%>
 <%@page import="org.apache.commons.lang.StringUtils"%>
 <%@page import="platform.login.bo.PubUserBo"%>
 <%
@@ -6,7 +7,7 @@ String currentRole = (String)session.getAttribute("CURRENTROLE");
 String userId = "";
 String userCode = "";
 String userName = "";
-if(StringUtils.isNotBlank(currentRole)&&"PUBUSER".equalsIgnoreCase(currentRole)){
+if(StringUtils.isNotBlank(currentRole)&&LoginConst.ROLE_PUBUSER.equalsIgnoreCase(currentRole)){
 	PubUserBo currentPerson = (session.getAttribute("CURRENTPERSON")!=null)?(PubUserBo)session.getAttribute("CURRENTPERSON"):null;
 	if(currentPerson!=null){
 		userId = currentPerson.getPublic_user_id();
@@ -59,13 +60,22 @@ function locationTo(url){
 /** 跳转到注册界面 **/
 function registerLocal(){
 	var regUrl = "/login/registerPubUser.html";
-	locationto(regUrl,"_blank",null);
+	locationto(regUrl,"_self",null);
 }
 
 /** 跳转到登录界面   **/
 function loginLocal(){
 	var regUrl = "/login/loginPubUser.html";
-	locationto(regUrl,"_blank",null);
+	locationto(regUrl,"_self",null);
+}
+
+/** 查看个人信息 **/
+function viewPerson(){
+	var regUrl = "/login/viewPerson.do";
+	var params = new Object();
+	params["currentRole"]="<%=currentRole %>";
+	params["userId"]="<%=userId %>";
+	locationto(regUrl,"_blank",params);
 }
 </script>
 </head>
@@ -114,17 +124,22 @@ function loginLocal(){
 								</tr>
 					    	</table><i class="dropdown icon"></i>
 						    <div class="menu">
-						        <a class="item">个人信息</a>
+						        <a class="item" style="margin-top:6px;" onclick="javascript:viewPerson();">个人信息</a>
 						        <div class="divider"></div>
 						        <a class="item">我的案件</a>
 						        <div class="divider"></div>
 						        <a class="item">我的关注</a>
 						        <div class="divider"></div>
-						        <a onclick="javascript:locationTo('/login/userLogout.html','_self')" class="item">退出登录</a>
+						        <a style="margin-bottom:6px;" onclick="javascript:locationto('/login/userLogout.html','_self','');" class="item">退出登录</a>
 						      </div>
 					    </div>
-					    <div style="width:100px;margin-top:8px;display:inline;">
-							<div style="width:30px;float:left;"><img src="/image/login/message.png" style="width:32px;height:32px;margin-top:0px;"/></div>
+					    <div style="width:100px;margin-top:8px;display:inline;cursor:pointer;" onClick="javascript:alert('查看回复信息！');">
+					    	<table style="margin-top:0px;">
+								<tr>
+									<td><div style="width:30px;float:left;"><img src="/image/login/message.png" style="width:32px;height:32px;margin-top:0px;"/></div></td>
+									<td style="font-size:12px;padding-left:6px;"><span>2</span></td>
+								</tr>
+					    	</table>
 						</div>
 					</div>
 				</div>

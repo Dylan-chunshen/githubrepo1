@@ -13,5 +13,8 @@ public class LoginConst {
 	public static final String CIMP_ROLE_DEPART = "条线部门";
 	
 	public static final String CIMP_ROLE_LEADER = "街镇领导";
+	
+	public static final String ROLE_PUBUSER = "ROLE_PUBUSER";
+	public static final String ROLE_LAWYER = "ROLE_LAWYER";
 
 }
