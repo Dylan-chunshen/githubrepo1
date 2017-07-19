@@ -205,14 +205,14 @@ function viewPerson(){
 	</div>
 </header>
 </div>
-<div style="margin-top:16px;height:60px;">
+<div style="margin-top:16px;height:60px;margin-bottom:20px;">
 	<h2 style="height:30px;font-size:22px;padding-left:265px;">个人信息</h2>
 	<div style="padding-left:265px;">
 		提示：要修改或补充个人信息请点击这里！
 	</div>
 </div>
 
-<div class="ui borderless main menu" style="margin-top:15px;">
+<div class="ui borderless main menu" style="margin-top:0px;">
     <div class="ui text container" style="width:800px;max-width:800px;font-size:16px;">
       <div href="#" class="header item">
         <img class="logo" src="../../image/login/account.png" style="width:20px;height:20px;margin-right:2px;">
