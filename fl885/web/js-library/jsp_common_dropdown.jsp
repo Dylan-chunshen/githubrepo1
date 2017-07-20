@@ -15,6 +15,7 @@
   <link rel="stylesheet" type="text/css" href="<%=jsLibraryPathDropdown%>/dist/components/grid.css">
   <link rel="stylesheet" type="text/css" href="<%=jsLibraryPathDropdown%>/dist/components/header.css">
   <link rel="stylesheet" type="text/css" href="<%=jsLibraryPathDropdown%>/dist/components/image.css">
+  <link rel="stylesheet" type="text/css" href="<%=jsLibraryPathDropdown%>/dist/components/label.css">
 
   <link rel="stylesheet" type="text/css" href="<%=jsLibraryPathDropdown%>/dist/components/divider.css">
   <link rel="stylesheet" type="text/css" href="<%=jsLibraryPathDropdown%>/dist/components/list.css">
@@ -35,3 +36,7 @@
 <!--- Component JS -->
 <script type="text/javascript" src="<%=jsLibraryPathDropdown%>/dist/components/transition.js"></script>
 <script type="text/javascript" src="<%=jsLibraryPathDropdown%>/dist/components/dropdown.js"></script>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
